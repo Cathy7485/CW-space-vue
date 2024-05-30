@@ -1,0 +1,113 @@
+.about{
+  ul{
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+}
+.about-page-bg{
+  position: relative;
+  &::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    width: calc(100% - 24px);
+    height: 100%;
+    background: url(@/assets/images/logo-sm.png) no-repeat #232323;
+    background-position: calc(50% + 40px) bottom;
+    z-index: -1;
+  }
+}
+
+.about-page-info{
+  position: relative;
+  padding: 40px 20px 0 12px;
+  height: 100%;
+  color: #fff;
+  font-weight: 600;
+  &::before{
+    content: "comfortable work space";
+    position: absolute;
+    right: 0px;
+    bottom: 12px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #464646;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+.space-photos{
+  position: relative;
+  display: block;
+  height: 700px;
+  margin-bottom: 60px;
+
+  
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.space-name{
+  position: absolute;
+  left: 50px;
+  bottom: -30px;
+  background: #232323;
+  padding: 36px 62px;
+}
+
+.space-name-item{
+  display: block;
+  color: #848484;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  &.active{
+    color: #fff;
+  }
+  // &:first-child{
+  //   &.active{
+  //     color: #fff;
+  //   }
+  // }
+}
+
+.space-item{
+  position: absolute;
+  top: 0 ;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 700px;
+}
+// ul.space-name{
+//   position: absolute;
+//   font-weight: 600;
+//   font-size: 1.125rem;
+//   li{
+//     display: flex;
+//     align-items: center;
+//     margin-bottom: 12px;
+//     cursor: pointer;
+//   }
+//   .active{
+//     color: #fff;
+//   }
+//   .num{
+//     margin-right: 24px;
+//     font-size: 1.5rem;
+//   }
+// }
+
+.icon-title{
+  font-weight: 600;
+}

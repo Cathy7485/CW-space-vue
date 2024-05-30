@@ -1,0 +1,51 @@
+.logo{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 154px;
+  height: 174px;
+  background: url(@/assets/images/logo-md.png) no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
+}
+.nav{ 
+  padding: 20px 0;
+  @include desktop{
+    padding: 16px 0;
+  }
+  &.nav-bg{
+    background: rgba(0,0,0,0.5);
+    .logo{
+      width: 80px;
+      height: 80px;
+      background: url(@/assets/images/logo-sm.png) no-repeat;
+      background-size: cover;
+    }
+  }
+  &-link{
+    color: #fff;
+    margin-right: 12px;
+    &:last-child{
+      margin-right: 0;
+    }
+    & active{ 
+      background: $primary;
+    }
+    &:hover{
+      background: $primary;
+    }
+  }
+}
+.navbar-toggler{
+  padding: 0;
+  border: none;
+  &:focus{
+    box-shadow: none;
+  }
+  &-icon{
+    width: 48px;
+    height: 48px;
+    background-image: url(@/assets/images/navbar-toggler-icon.svg);
+    background-size: contain;
+  }
+}
