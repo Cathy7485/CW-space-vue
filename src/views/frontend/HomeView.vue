@@ -3,7 +3,7 @@
   <div class="content container">
     <HomeAbout />
     <HomeSpace />
-    <ServicePlan />
+    <HomeService />
     <LatestNews />
     <HomeQuestion />
   </div>
@@ -14,7 +14,7 @@
 import HomeBanner from '@/components/HomeBanner.vue';
 import HomeAbout from '@/components/HomeAbout.vue';
 import HomeSpace from '@/components/HomeSpace.vue';
-import ServicePlan from '@/components/ServicePlan.vue';
+import HomeService from '@/components/HomeService.vue';
 import LatestNews from '@/components/HomeNews.vue';
 import HomeQuestion from '@/components/HomeQuestion.vue';
 import HomeVisitBanner from '@/components/HomeVisitBanner.vue';
@@ -25,7 +25,7 @@ export default {
     HomeBanner,
     HomeAbout,
     HomeSpace,
-    ServicePlan,
+    HomeService,
     LatestNews,
     HomeQuestion,
     HomeVisitBanner,

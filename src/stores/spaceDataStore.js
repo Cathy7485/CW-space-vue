@@ -1,18 +1,21 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
-const { VUE_URL, VUE_PATH } = import.meta.env;
+const { VITE_URL, VITE_PATH } = import.meta.env;
 
-const spaceStore = defineStore('space', {
+const spaceStore = defineStore('spaceStore', {
   state: () => ({
     spaceData: [],
   }),
   actions: {
     getSpace() {
-      const url = `${VUE_URL}api/${VUE_PATH}/space`;
+      const url = `${VITE_URL}api/${VITE_PATH}/products/all`;
       axios.get(url)
         .then((res) => {
-          console.log(res.data.products);
+          this.spaceData = res.data.products;
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
         });
     },
   },
