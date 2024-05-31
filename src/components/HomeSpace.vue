@@ -1,6 +1,6 @@
 <!-- eslint-disable import/extensions -->
 <template>
-  <div class="home-space block container">
+  <div class="home-space block">
     <HomeBlockTitle :title="title" :link="link" />
     <swiper
       class="space-swiper"
@@ -13,17 +13,8 @@
       :modules="modules"
       navigation
       :pagination="{ clickable: true }">
-      <swiper-slide>
-        <img src="https://cathy7485.github.io/CW-space/images/index-space01.jpg" alt="">
-      </swiper-slide>
-      <swiper-slide>
-        <img src="https://cathy7485.github.io/CW-space/images/index-space02.jpg" alt="">
-      </swiper-slide>
-      <swiper-slide>
-        <img src="https://cathy7485.github.io/CW-space/images/index-space03.jpg" alt="">
-      </swiper-slide>
-      <swiper-slide>
-        <img src="https://cathy7485.github.io/CW-space/images/index-space02.jpg" alt="">
+      <swiper-slide v-for="item in spaceData" :key="item.id">
+        <img :src="item.imageUrl" :alt="item.title">
       </swiper-slide>
     </swiper>
   </div>
@@ -43,6 +34,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/extensions
 import 'swiper/css/pagination';
+import { mapActions, mapState } from 'pinia';
+import spaceStore from '@/stores/spaceDataStore';
 
 export default {
   data() {
@@ -58,12 +51,13 @@ export default {
     SwiperSlide,
   },
   methods: {
-    onSwiper(swiper) {
-      console.log(swiper);
-    },
-    onSlideChange() {
-      console.log('slide change');
-    },
+    ...mapActions(spaceStore, ['getSpace']),
+  },
+  computed: {
+    ...mapState(spaceStore, ['spaceData']),
+  },
+  mounted() {
+    this.getSpace();
   },
 };
 </script>
