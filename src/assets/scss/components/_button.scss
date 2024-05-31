@@ -2,8 +2,15 @@
   display: inline-block;
   border: none;
   padding: 8px 20px;
+  border: solid 1px #eee;
+  background: #FAFAFA;
   font-weight: 600;
   transition: all .5s;
+  &:hover{
+    background: #000;
+    color: #fff;
+    transition: all .5s;
+  }
   &.primary{
     background: $primary;
     color: #000;

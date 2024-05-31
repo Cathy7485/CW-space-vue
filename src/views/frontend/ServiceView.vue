@@ -3,13 +3,14 @@
     :images-url="bannerUrl"
     :page-title="pageTitle"></PageBanner>
   <div class="block container mt-5">
-    <h1>This is an plan page</h1>
+    <ServicePlan />
   </div>
 </template>
 
 <script>
 import PageBanner from '@/components/PageBanner.vue';
 import bannerUrl from '@/assets/images/plan-banner.jpg';
+import ServicePlan from '@/components/ServicePlan.vue';
 
 export default {
   data() {
@@ -20,6 +21,7 @@ export default {
   },
   components: {
     PageBanner,
+    ServicePlan,
   },
 };
 </script>
