@@ -1,5 +1,5 @@
 <template>
-  <div class="block container">
+  <div class="block">
     <div class="row">
       <div class="col-lg-6">
         <div class="about-info">
