@@ -18,7 +18,7 @@
       <ul class="space-photos img-outer">
         <li class="space-item">
           <img
-            :src="this.tempData.url"
+            :src="getImage(this.tempData.url)"
             :alt="this.tempData.title" />
         </li>
       </ul>
@@ -108,14 +108,14 @@ export default {
       bannerUrl,
       pageTitle: '關於我們',
       spaceData: [
-        { id: 1, title: '共同辦公空間', url: '../images/space01.jpg' },
-        { id: 2, title: '獨立辦公空間', url: '../images/space02.jpg' },
-        { id: 3, title: '會議室空間', url: '../images/space03.jpg' },
-        { id: 4, title: '休息茶水間', url: '../images/pantry-room.jpg' },
-        { id: 5, title: '沙發休閒空間', url: '../images/lounge.jpg' },
+        { id: 1, title: '共同辦公空間', url: '../../assets/images/shared01.jpg' },
+        { id: 2, title: '獨立辦公空間', url: '../../assets/images/office02.jpg' },
+        { id: 3, title: '會議室空間', url: '../../assets/images/meeting02.jpg' },
+        { id: 4, title: '休息茶水間', url: '../../assets/images/pantry-room.jpg' },
+        { id: 5, title: '沙發休閒空間', url: '../../assets/images/lounge.jpg' },
       ],
       tempData: {
-        id: 1, title: '共同辦公空間', url: '../images/space01.jpg',
+        id: 1, title: '共同辦公空間', url: '../../assets/images/shared01.jpg',
       },
     };
   },
@@ -133,6 +133,9 @@ export default {
           target.isActive = false;
         }
       });
+    },
+    getImage(url) {
+      return new URL(url, import.meta.url).href;
     },
   },
   mounted() {
