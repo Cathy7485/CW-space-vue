@@ -1,6 +1,10 @@
 <!-- eslint-disable no-tabs -->
 <template>
   <div class="home-service block">
+    <LoadingComponent
+      :active="isLoading"
+      :is-full-page="fullPage"
+      ></LoadingComponent>
     <swiper
       class="service-swiper"
       :slides-per-view="1"
@@ -36,16 +40,13 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Swiper, SwiperSlide } from 'swiper/vue';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Navigation } from 'swiper/modules';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/extensions
 import 'swiper/css';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/extensions
 import 'swiper/css/navigation';
 import { mapActions, mapState } from 'pinia';
 import spaceStore from '@/stores/spaceDataStore';
+import statusStore from '@/stores/statusStore';
 
 export default {
   data() {
@@ -61,6 +62,7 @@ export default {
   },
   computed: {
     ...mapState(spaceStore, ['spaceData']),
+    ...mapState(statusStore, ['isLoading', 'fullPage']),
   },
   methods: {
     ...mapActions(spaceStore, ['getSpace']),
