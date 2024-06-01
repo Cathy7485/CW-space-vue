@@ -88,9 +88,11 @@ export default {
     PageBanner,
   },
   methods: {
+    ...mapActions(spaceStore, ['getSpace']),
     spaceTitleClass() {
+      let target;
       this.spaceData.forEach((element) => {
-        const target = element;
+        target = element;
         if (element.title === this.tempData.title) {
           target.isActive = true;
         } else {
@@ -102,13 +104,15 @@ export default {
       this.tempData = item;
       this.spaceTitleClass();
     },
-    ...mapActions(spaceStore, ['getSpace']),
   },
   computed: {
     ...mapState(spaceStore, ['spaceData']),
   },
   mounted() {
     this.getSpace();
+  },
+  updated() {
+    // 取完資料再增加樣式
     this.spaceTitleClass();
   },
 };
