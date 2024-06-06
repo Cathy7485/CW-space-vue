@@ -17,7 +17,7 @@
       :space-between="50"
       :modules="modules"
       navigation>
-      <swiper-slide v-for="item in spaceData" :key="item.id">
+      <swiper-slide v-for="item in spaceList" :key="item.id">
         <div class="service-item">
           <div class="img">
             <img :src="item.imageUrl" :alt="item.title">
@@ -31,7 +31,9 @@
               <p class="">{{ item.description }}</p>
               <p v-html="item.content"></p>
             </div>
-            <a href="#!" class="button primary">更多資訊</a>
+            <router-link
+              :to="`/product/${item.id}`"
+              class="button primary">更多資訊</router-link>
           </div>
         </div>
       </swiper-slide>
@@ -61,14 +63,14 @@ export default {
     SwiperSlide,
   },
   computed: {
-    ...mapState(spaceStore, ['spaceData']),
+    ...mapState(spaceStore, ['spaceList']),
     ...mapState(statusStore, ['isLoading', 'fullPage']),
   },
   methods: {
-    ...mapActions(spaceStore, ['getSpace']),
+    ...mapActions(spaceStore, ['getSpaceList']),
   },
   mounted() {
-    this.getSpace();
+    this.getSpaceList();
   },
 };
 </script>

@@ -13,7 +13,7 @@
       :modules="modules"
       navigation
       :pagination="{ clickable: true }">
-      <swiper-slide v-for="item in spaceData" :key="item.id">
+      <swiper-slide v-for="item in spaceList" :key="item.id">
         <img :src="item.imageUrl" :alt="item.title">
       </swiper-slide>
     </swiper>
@@ -51,13 +51,13 @@ export default {
     SwiperSlide,
   },
   methods: {
-    ...mapActions(spaceStore, ['getSpace']),
+    ...mapActions(spaceStore, ['getSpaceList']),
   },
   computed: {
-    ...mapState(spaceStore, ['spaceData']),
+    ...mapState(spaceStore, ['spaceList']),
   },
   mounted() {
-    this.getSpace();
+    this.getSpaceList();
   },
 };
 </script>
