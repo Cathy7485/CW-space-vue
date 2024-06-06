@@ -3,13 +3,14 @@
     :images-url="bannerUrl"
     :page-title="pageTitle"></PageBanner>
   <div class="block container mt-5">
-    <h1>This is an contact page</h1>
+    <PageContact />
   </div>
 </template>
 
 <script>
 import PageBanner from '@/components/PageBanner.vue';
 import bannerUrl from '@/assets/images/contact-banner.jpg';
+import PageContact from '@/components/PageContact.vue';
 
 export default {
   data() {
@@ -20,6 +21,7 @@ export default {
   },
   components: {
     PageBanner,
+    PageContact,
   },
 };
 </script>
