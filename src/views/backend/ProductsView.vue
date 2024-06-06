@@ -47,6 +47,8 @@
 <script>
 import ProductModalVue from '@/components/ProductModal.vue';
 
+const { VITE_URL, VITE_PATH } = import.meta.env;
+
 export default {
   data() {
     return {
@@ -63,18 +65,17 @@ export default {
     },
     updateProduct(item) {
       this.tempProduct = item;
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
+      const api = `${VITE_URL}api/${VITE_PATH}/admin/product`;
       const productComponent = this.$refs.productModal;
       this.$http.post(api, { data: this.tempProduct }).then(
-        (res) => {
-          console.log(res);
+        () => {
           productComponent.hideModal();
           this.getProducts();
         },
       );
     },
     getProducts() {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products`;
+      const api = `${VITE_URL}api/${VITE_PATH}/admin/products`;
       this.$http.get(api)
         .then((res) => {
           if (res.data.success) {

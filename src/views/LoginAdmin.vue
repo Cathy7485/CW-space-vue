@@ -1,7 +1,6 @@
-<!-- eslint-disable vuejs-accessibility/no-autofocus -->
-<!-- eslint-disable vuejs-accessibility/label-has-for -->
 <template>
-  <div class="block container mt-5">
+  <div class="block container" style="margin-top: 200px;">
+    <div class="h2 mb-3">管理者登入</div>
     <form id="form" class="form-signin"
       @submit.prevent="signIn">
       <div class="form-floating mb-3">
@@ -37,6 +36,8 @@
 </template>
 
 <script>
+const { VITE_URL } = import.meta.env;
+
 export default {
   data() {
     return {
@@ -48,7 +49,7 @@ export default {
   },
   methods: {
     signIn() {
-      const api = `${process.env.VUE_APP_API}admin/signin`;
+      const api = `${VITE_URL}admin/signin`;
       this.$http.post(api, this.user)
         .then((res) => {
           if (res.data.success) {

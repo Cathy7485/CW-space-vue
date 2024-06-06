@@ -7,10 +7,12 @@
 </template>
 
 <script>
+const { VITE_URL } = import.meta.env;
+
 export default {
   methods: {
     logout() {
-      const api = `${process.env.VUE_APP_API}logout`;
+      const api = `${VITE_URL}logout`;
       this.$http.post(api, this.user)
         .then((res) => {
           if (res.data.success) {
