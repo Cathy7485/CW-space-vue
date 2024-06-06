@@ -24,7 +24,7 @@
       </ul>
       <div class="space-name">
         <a href="#"
-          v-for="(item) in this.spaceData"
+          v-for="(item) in this.spaceList"
           class="space-name-item"
           :class="{'active': item.isActive }"
           :key="item.id"
@@ -107,7 +107,7 @@ export default {
       isActive: false,
       bannerUrl,
       pageTitle: '關於我們',
-      spaceData: [
+      spaceList: [
         { id: 1, title: '共同辦公空間', url: '../../assets/images/shared01.jpg' },
         { id: 2, title: '獨立辦公空間', url: '../../assets/images/office02.jpg' },
         { id: 3, title: '會議室空間', url: '../../assets/images/meeting02.jpg' },
@@ -125,7 +125,7 @@ export default {
       this.spaceTitleClass();
     },
     spaceTitleClass() {
-      this.spaceData.forEach((element) => {
+      this.spaceList.forEach((element) => {
         const target = element;
         if (target.title === this.tempData.title) {
           target.isActive = true;

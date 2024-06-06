@@ -26,6 +26,11 @@ const routes = [
         component: () => import('../views/frontend/SpaceView.vue'),
       },
       {
+        path: '/product/:id',
+        name: 'product',
+        component: () => import('../views/frontend/SpaceDetail.vue'),
+      },
+      {
         path: '/service',
         name: 'service',
         component: () => import('../views/frontend/ServiceView.vue'),
