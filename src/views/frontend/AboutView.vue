@@ -108,11 +108,11 @@ export default {
       bannerUrl,
       pageTitle: '關於我們',
       spaceList: [
-        { id: 1, title: '共同辦公空間', url: '../../assets/images/shared01.jpg' },
-        { id: 2, title: '獨立辦公空間', url: '../../assets/images/office02.jpg' },
-        { id: 3, title: '會議室空間', url: '../../assets/images/meeting02.jpg' },
-        { id: 4, title: '休息茶水間', url: '../../assets/images/pantry-room.jpg' },
-        { id: 5, title: '沙發休閒空間', url: '../../assets/images/lounge.jpg' },
+        { id: 1, title: '共同辦公空間', url: '@/assets/images/shared01.jpg' },
+        { id: 2, title: '獨立辦公空間', url: '@/assets/images/office02.jpg' },
+        { id: 3, title: '會議室空間', url: '@/assets/images/meeting02.jpg' },
+        { id: 4, title: '休息茶水間', url: '@/assets/images/pantry-room.jpg' },
+        { id: 5, title: '沙發休閒空間', url: '@/assets/images/lounge.jpg' },
       ],
       tempData: {
         id: 1, title: '共同辦公空間', url: '../../assets/images/shared01.jpg',
