@@ -4,11 +4,13 @@ const routes = [
   {
     path: '/',
     component: () => import('../views/FrontHome.vue'),
-    children: [{
-      path: '',
-      name: 'Home',
-      component: () => import('../views/frontend/HomeView.vue'),
-    }],
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('../views/frontend/HomeView.vue'),
+      },
+    ],
   },
   {
     path: '/',
@@ -69,6 +71,11 @@ const routes = [
         path: '/products',
         name: 'products',
         component: () => import('../views/backend/ProductsView.vue'),
+      },
+      {
+        path: '/article',
+        name: 'article',
+        component: () => import('../views/backend/ArticleView.vue'),
       },
     ],
   },
