@@ -1,15 +1,17 @@
 <template>
   <PageBanner
     :images-url="thisSpace.imagesUrl"
-    :page-title="pageTitle"></PageBanner>
+    :page-title="thisSpace.title"></PageBanner>
   <div class="block container space-page mt-5">
     <div class="space-tabs">
-      <div
+      <routerLink
         v-for="item in spaceList"
         :key="item.id"
         class="space-tab-item"
         :class="{'active': item.isActive }"
-        @click="changeSpace(item)">{{ item.title }}</div>
+        :to="`/product/${item.id}`"
+        @click.prevent="changeSpace(item.id)"
+        >{{ item.title }}</routerLink>
     </div>
     <div class="row">
       <div class="col-lg-5 d-flex flex-column">
@@ -25,12 +27,12 @@
           <div class="title">詳細資訊</div>
           <div class="p-3" v-html="thisSpace.content"></div>
         </div>
-        <div class="mt-auto">
+        <div class="mt-auto" v-if="thisSpace.price !== 0">
           <router-link
-            to="reserve"
+            :to="{ path: '/reserve' }"
             class="button primary me-3">立即預約</router-link>
-            <router-link
-            to="reserve"
+          <router-link
+            :to="{ path: '/reserve' }"
             class="button">預約參觀</router-link>
         </div>
       </div>
@@ -68,15 +70,7 @@ export default {
     return {
       isActive: false,
       pageTitle: '環境空間',
-      // thisSpace: {
-      //   title: '共享辦公空間',
-      //   price: '300',
-      //   content: '<p>- 獨立寬敞座位<br>- 穩定高速wifi、獨立插座<br>- 適合SOHO族、一人公司者<br>- 公共空間設備皆可自由使用</p>',
-      //   description: '週一至週五 8:00-18:00（不含例假日)',
-      //   imagesUrl: [
-      //     'https://github.com/Cathy7485/CW-space-vue/blob/main/src/assets/images/shared02.jpg?raw=true',
-      //   ],
-      // },
+      tempSpace: {},
       modules: [Navigation],
     };
   },
@@ -86,25 +80,15 @@ export default {
     PageBanner,
   },
   methods: {
-    ...mapActions(spaceStore, ['getSpace', 'getSpaceList']),
-    spaceTitleClass() {
-      let target;
-      this.spaceList.forEach((element) => {
-        target = element;
-        if (element.title === this.thisSpace.title) {
-          target.isActive = true;
-        } else {
-          target.isActive = false;
-        }
-      });
-    },
-    changeSpace(item) {
-      this.thisSpace = item;
-      this.spaceTitleClass();
+    ...mapActions(spaceStore, ['getSpace', 'getSpaceList', 'changeSpace', 'spaceTitleClass']),
+    changeSpace(id) {
+      this.$router.push(`/product/${id}`);
+      this.id = id;
+      this.getSpace(id);
     },
   },
   computed: {
-    ...mapState(spaceStore, ['thisSpace', 'spaceList']),
+    ...mapState(spaceStore, ['thisSpace', 'spaceList', 'statusStore']),
   },
   mounted() {
     const { id } = this.$route.params;

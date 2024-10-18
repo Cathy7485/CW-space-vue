@@ -5,7 +5,7 @@
   <div class="block container space-page mt-5">
     <div class="space-tabs">
       <div
-        v-for="item in spaceData"
+        v-for="item in spaceList"
         :key="item.id"
         class="space-tab-item"
         :class="{'active': item.isActive }"
@@ -88,10 +88,10 @@ export default {
     PageBanner,
   },
   methods: {
-    ...mapActions(spaceStore, ['getSpace']),
+    ...mapActions(spaceStore, ['getSpaceList']),
     spaceTitleClass() {
       let target;
-      this.spaceData.forEach((element) => {
+      this.spaceList.forEach((element) => {
         target = element;
         if (element.title === this.tempData.title) {
           target.isActive = true;
@@ -106,10 +106,10 @@ export default {
     },
   },
   computed: {
-    ...mapState(spaceStore, ['spaceData']),
+    ...mapState(spaceStore, ['spaceList']),
   },
   mounted() {
-    this.getSpace();
+    this.getSpaceList();
   },
   updated() {
     // 取完資料再增加樣式

@@ -22,17 +22,12 @@
 
 <script>
 import HomeBlockTitle from '@/components/HomeBlockTitle.vue';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Swiper, SwiperSlide } from 'swiper/vue';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Navigation, Pagination,
 } from 'swiper/modules';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/extensions
 import 'swiper/css';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/extensions
 import 'swiper/css/navigation';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/extensions
 import 'swiper/css/pagination';
 import { mapActions, mapState } from 'pinia';
 import spaceStore from '@/stores/spaceDataStore';
