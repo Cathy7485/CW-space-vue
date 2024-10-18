@@ -1,0 +1,9 @@
+.admin-links {
+  a{
+    color: #fff;
+    margin-right: 16px;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}
