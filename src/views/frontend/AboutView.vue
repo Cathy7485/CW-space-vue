@@ -1,3 +1,45 @@
+<script setup>
+import { ref, watch, onMounted } from 'vue';
+import PageBanner from '@/components/PageBanner.vue';
+import bannerUrl from '@/assets/images/about-banner.jpg';
+import spaceImg01 from '@/assets/images/shared01.jpg';
+import spaceImg02 from '@/assets/images/office02.jpg';
+import spaceImg03 from '@/assets/images/meeting02.jpg';
+import spaceImg04 from '@/assets/images/pantry-room.jpg';
+import spaceImg05 from '@/assets/images/lounge.jpg';
+
+const pageTitle = ref('關於我們');
+
+const tempData = ref([]);
+const defaultIndex = ref(0); // 預設值
+
+const spaceList = ref([
+  { id: 1, title: '共同辦公空間', url: spaceImg01 },
+  { id: 2, title: '獨立辦公空間', url: spaceImg02 },
+  { id: 3, title: '會議室空間', url: spaceImg03 },
+  { id: 4, title: '休息茶水間', url: spaceImg04 },
+  { id: 5, title: '沙發休閒空間', url: spaceImg05 },
+]);
+
+const activeSpace = (index) => {
+  defaultIndex.value = index;
+};
+
+const initSpace = () => {
+  if (defaultIndex.value === 0) [tempData.value] = spaceList.value;
+};
+
+watch(defaultIndex, (newIndex) => {
+  const target = spaceList.value.filter((item) => (item.id - 1) === newIndex);
+  // eslint 錯誤 解構 => tempData.value = target[0] 改成下面寫法
+  [tempData.value] = target;
+});
+
+onMounted(() => {
+  initSpace();
+});
+</script>
+
 <template>
   <PageBanner :images-url="bannerUrl" :page-title="pageTitle"></PageBanner>
   <div class="about content">
@@ -17,22 +59,19 @@
     <div class="block">
       <ul class="space-photos img-outer">
         <li class="space-item">
-          <img
-            :src="getImage(this.tempData.url)"
-            :alt="this.tempData.title" />
+          <img :src="tempData.url" :alt="tempData.title">
         </li>
       </ul>
       <div class="space-name">
-        <a href="#"
-          v-for="(item) in this.spaceList"
-          class="space-name-item"
-          :class="{'active': item.isActive }"
+        <button type="button"
+          v-for="(item, idx) in spaceList"
+          :class="['space-name-item', {'active': defaultIndex === idx }]"
           :key="item.id"
-          @click.prevent="changeSpace(item)"
+          @click.prevent="activeSpace(idx)"
           >
           <span class="me-3">{{ '0' + item.id }}</span>
           {{ item.title }}
-        </a>
+        </button>
       </div>
     </div>
     <div class="container block icons pt-5">
@@ -96,53 +135,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import PageBanner from '@/components/PageBanner.vue';
-import bannerUrl from '@/assets/images/about-banner.jpg';
-
-export default {
-  data() {
-    return {
-      isActive: false,
-      bannerUrl,
-      pageTitle: '關於我們',
-      spaceList: [
-        { id: 1, title: '共同辦公空間', url: '@/assets/images/shared01.jpg' },
-        { id: 2, title: '獨立辦公空間', url: '@/assets/images/office02.jpg' },
-        { id: 3, title: '會議室空間', url: '@/assets/images/meeting02.jpg' },
-        { id: 4, title: '休息茶水間', url: '@/assets/images/pantry-room.jpg' },
-        { id: 5, title: '沙發休閒空間', url: '@/assets/images/lounge.jpg' },
-      ],
-      tempData: {
-        id: 1, title: '共同辦公空間', url: '../../assets/images/shared01.jpg',
-      },
-    };
-  },
-  methods: {
-    changeSpace(item) {
-      this.tempData = item;
-      this.spaceTitleClass();
-    },
-    spaceTitleClass() {
-      this.spaceList.forEach((element) => {
-        const target = element;
-        if (target.title === this.tempData.title) {
-          target.isActive = true;
-        } else {
-          target.isActive = false;
-        }
-      });
-    },
-    getImage(url) {
-      return new URL(url, import.meta.url).href;
-    },
-  },
-  mounted() {
-    this.spaceTitleClass();
-  },
-  components: {
-    PageBanner,
-  },
-};
-</script>
