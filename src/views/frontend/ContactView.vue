@@ -1,3 +1,13 @@
+<script setup>
+import { ref } from 'vue';
+import PageBanner from '@/components/PageBanner.vue';
+import bannerUrl from '@/assets/images/contact-banner.jpg';
+import PageContact from '@/components/PageContact.vue';
+
+const pageTitle = ref('聯絡我們');
+
+</script>
+
 <template>
   <PageBanner
     :images-url="bannerUrl"
@@ -6,22 +16,3 @@
     <PageContact />
   </div>
 </template>
-
-<script>
-import PageBanner from '@/components/PageBanner.vue';
-import bannerUrl from '@/assets/images/contact-banner.jpg';
-import PageContact from '@/components/PageContact.vue';
-
-export default {
-  data() {
-    return {
-      bannerUrl,
-      pageTitle: '聯絡我們',
-    };
-  },
-  components: {
-    PageBanner,
-    PageContact,
-  },
-};
-</script>
