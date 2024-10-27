@@ -1,4 +1,4 @@
-.space-tabs{
+.space-tabs {
   position: relative;
   width: 100%;
   display: flex;
@@ -9,7 +9,8 @@
   margin-bottom: 74px;
   padding-left: 0;
 }
-.space-tab-item{
+
+.space-tab-item {
   flex: 1;
   display: block;
   text-align: center;
@@ -18,27 +19,32 @@
   font-weight: 600;
   padding: 18px 0;
   cursor: pointer;
-  &.active{
+
+  &.active {
     background: #000;
     color: #fff;
   }
 }
-.space-page{
-  .space-title{
+
+.space-page {
+  .space-title {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 18px;
   }
 }
-.space-page-info{
+
+.space-page-info {
   background: #FAFAFA;
   border: solid 1px #E7E7E7;
   margin-bottom: 12px;
-  .title{
+
+  .title {
     padding: 12px;
     background: #E7E7E7;
   }
-  p{
+
+  p {
     margin-bottom: 0;
   }
 }

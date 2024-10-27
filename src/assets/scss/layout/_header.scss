@@ -1,4 +1,4 @@
-.logo{
+.logo {
   position: absolute;
   top: 0;
   left: 0;
@@ -8,41 +8,52 @@
   background-size: contain;
   text-indent: -9999px;
 }
-.nav{ 
+
+.nav {
   padding: 20px 0;
-  @include desktop{
+
+  @include desktop {
     padding: 16px 0;
   }
-  &.nav-bg{
-    background: rgba(0,0,0,0.5);
-    .logo{
+
+  &.nav-bg {
+    background: rgba(0, 0, 0, 0.5);
+
+    .logo {
       width: 80px;
       height: 80px;
       background: url(@/assets/images/logo-sm.png) no-repeat;
       background-size: cover;
     }
   }
-  &-link{
+
+  &-link {
     color: #fff;
     margin-right: 12px;
-    &:last-child{
+
+    &:last-child {
       margin-right: 0;
     }
-    & active{ 
+
+    & active {
       background: $primary;
     }
-    &:hover{
+
+    &:hover {
       background: $primary;
     }
   }
 }
-.navbar-toggler{
+
+.navbar-toggler {
   padding: 0;
   border: none;
-  &:focus{
+
+  &:focus {
     box-shadow: none;
   }
-  &-icon{
+
+  &-icon {
     width: 48px;
     height: 48px;
     background-image: url(@/assets/images/navbar-toggler-icon.svg);
