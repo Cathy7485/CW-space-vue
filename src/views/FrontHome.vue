@@ -1,23 +1,13 @@
+<script setup>
+import { RouterView } from 'vue-router';
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
+import GoTop from '@/components/GoTop.vue';
+</script>
+
 <template>
-  <HomeHeader />
+  <HeaderComponent />
   <RouterView />
-  <HomeFooter />
+  <FooterComponent />
   <GoTop />
 </template>
-
-<script>
-import { RouterView } from 'vue-router';
-import HomeHeader from '@/components/HomeHeader.vue';
-import HomeFooter from '@/components/HomeFooter.vue';
-import GoTop from '@/components/GoTop.vue';
-
-export default {
-  name: 'FrontLayout',
-  components: {
-    RouterView,
-    HomeHeader,
-    HomeFooter,
-    GoTop,
-  },
-};
-</script>
