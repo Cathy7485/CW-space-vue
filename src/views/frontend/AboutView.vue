@@ -74,7 +74,7 @@ onMounted(() => {
         </button>
       </div>
     </div>
-    <div class="container block icons pt-5">
+    <div class="container block icons">
       <div class="row">
         <div class="box-title">提供給您最佳的辦公環境</div>
         <div class="col-sm-4 gy-5 d-flex flex-column text-center">

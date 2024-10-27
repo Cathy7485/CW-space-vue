@@ -1,55 +1,79 @@
-.about{
-  ul{
+.about {
+  ul {
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
   }
-}
-.about-page-bg{
-  position: relative;
-  &::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: block;
-    width: calc(100% - 24px);
+
+  &-page-bg {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      width: calc(100% - 24px);
+      height: 100%;
+      background: url(@/assets/images/logo-sm.png) no-repeat #232323;
+      background-position: calc(50% + 40px) bottom;
+      z-index: -1;
+
+      @include desktop {
+        background-size: 56px;
+        background-position: right bottom;
+      }
+    }
+  }
+
+  &-page-info {
+    position: relative;
+    padding: 40px 20px 0 12px;
     height: 100%;
-    background: url(@/assets/images/logo-sm.png) no-repeat #232323;
-    background-position: calc(50% + 40px) bottom;
-    z-index: -1;
-  }
-}
-
-.about-page-info{
-  position: relative;
-  padding: 40px 20px 0 12px;
-  height: 100%;
-  color: #fff;
-  font-weight: 600;
-  &::before{
-    content: "comfortable work space";
-    position: absolute;
-    right: 0px;
-    bottom: 12px;
-    font-size: 1.5rem;
+    color: #fff;
     font-weight: 600;
-    color: #464646;
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 1;
+
+    &::before {
+      content: "comfortable work space";
+      position: absolute;
+      right: 0px;
+      bottom: 12px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #464646;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+
+      @include desktop {
+        left: 12px;
+        right: auto;
+      }
+
+      @include tablet-landscape {
+        font-size: 1.1rem;
+      }
+    }
+
+    @include desktop {
+      padding: 32px 20px 64px;
+    }
   }
 }
 
-.space-photos{
+.space-photos {
   position: relative;
   display: block;
   height: 700px;
   margin-bottom: 60px;
 
-  
-  img{
+  @include tablet-landscape {
+    height: auto;
+  }
+
+  img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -57,57 +81,69 @@
   }
 }
 
-.space-name{
+.space-name {
   position: absolute;
   left: 50px;
   bottom: -30px;
   background: #232323;
-  padding: 36px 62px;
-}
+  padding: 32px 64px;
 
-.space-name-item{
-  display: block;
-  color: #848484;
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 24px;
-  &.active{
-    color: #fff;
+  @include desktop {
+    padding: 24px 40px;
   }
-  // &:first-child{
-  //   &.active{
-  //     color: #fff;
-  //   }
-  // }
+
+  @include tablet-landscape {
+    position: relative;
+    left: auto;
+    bottom: auto;
+  }
+
+  &-item {
+    display: block;
+    color: #848484;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+
+    @include desktop {
+      margin-bottom: 16px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.active {
+      color: #fff;
+    }
+  }
 }
 
-.space-item{
+.space-item {
   position: absolute;
-  top: 0 ;
+  top: 0;
   left: 0;
   display: block;
   width: 100%;
   height: 700px;
-}
-// ul.space-name{
-//   position: absolute;
-//   font-weight: 600;
-//   font-size: 1.125rem;
-//   li{
-//     display: flex;
-//     align-items: center;
-//     margin-bottom: 12px;
-//     cursor: pointer;
-//   }
-//   .active{
-//     color: #fff;
-//   }
-//   .num{
-//     margin-right: 24px;
-//     font-size: 1.5rem;
-//   }
-// }
 
-.icon-title{
+  @include tablet-landscape {
+    position: relative;
+    height: auto;
+  }
+}
+
+.icon-title {
   font-weight: 600;
+}
+
+.icons {
+  padding-top: 32px;
+
+  @include tablet-landscape {
+    padding-top: 20px;
+  }
 }
