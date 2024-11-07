@@ -17,7 +17,6 @@ onMounted(() => {
     <swiper-container
       class="service-swiper"
       navigation="true"
-      pagination="true"
       :slides-per-view="2"
       :space-between="32"
     >

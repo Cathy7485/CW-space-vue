@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
-import PageBanner from '@/components/PageBanner.vue';
 import bannerUrl from '@/assets/images/plan-banner.jpg';
-import ServicePlan from '@/components/ServicePlan.vue';
+import PageBanner from '@/components/PageBanner.vue';
+import ServicePlan from '@/components/SwiperPlan.vue';
 
 const pageTitle = ref('方案介紹');
 </script>
