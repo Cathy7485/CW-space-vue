@@ -1,3 +1,7 @@
+<script setup>
+import PageBanner from '@/components/PageBanner.vue';
+</script>
+
 <template>
   <PageBanner
     :images-url="thisSpace.imagesUrl"
@@ -55,49 +59,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import PageBanner from '@/components/PageBanner.vue';
-import { mapActions, mapState } from 'pinia';
-import spaceStore from '@/stores/spaceDataStore';
-
-export default {
-  data() {
-    return {
-      isActive: false,
-      pageTitle: '環境空間',
-      tempSpace: {},
-      modules: [Navigation],
-    };
-  },
-  components: {
-    Swiper,
-    SwiperSlide,
-    PageBanner,
-  },
-  methods: {
-    ...mapActions(spaceStore, ['getSpace', 'getSpaceList', 'changeSpace', 'spaceTitleClass']),
-    changeSpace(id) {
-      this.$router.push(`/product/${id}`);
-      this.id = id;
-      this.getSpace(id);
-    },
-  },
-  computed: {
-    ...mapState(spaceStore, ['thisSpace', 'spaceList', 'statusStore']),
-  },
-  mounted() {
-    const { id } = this.$route.params;
-    this.getSpace(id);
-    this.getSpaceList();
-  },
-  updated() {
-    // 取完資料再增加樣式
-    this.spaceTitleClass();
-  },
-};
-</script>
