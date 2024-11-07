@@ -1,76 +1,44 @@
-<!-- eslint-disable no-tabs -->
+<script setup>
+import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useSpaceStore } from '@/stores/spaceStore';
+
+const store = useSpaceStore();
+const { spaceList } = storeToRefs(store);
+const { getSpaceList } = store;
+
+onMounted(() => {
+  getSpaceList();
+});
+</script>
+
 <template>
   <div class="home-service block">
-    <LoadingComponent
-      :active="isLoading"
-      :is-full-page="fullPage"
-      ></LoadingComponent>
-    <swiper
+    <swiper-container
       class="service-swiper"
-      :slides-per-view="1"
-      :breakpoints="{
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 12,
-        }
-      }"
-      :space-between="50"
-      :modules="modules"
-      navigation>
-      <swiper-slide v-for="item in spaceList" :key="item.id">
+      navigation="true"
+      pagination="true"
+      :slides-per-view="2"
+      :space-between="32"
+    >
+      <swiper-slide
+        v-for="item in spaceList"
+        :key="item.id">
         <div class="service-item">
           <div class="img">
-            <img :src="item.imageUrl" :alt="item.title">
+            <img :src="item.imgUrl[0]" :alt="item.name">
           </div>
           <div class="info">
-            <div class="title">{{ item.title }}</div>
-            <div v-if="item.price === 0">免費</div>
-            <div v-else>NT {{ item.price }} / 天</div>
+            <div class="title">{{ item.name }}</div>
+            <div>{{ item.price }}</div>
             <hr>
-            <div class="">
-              <p class="">{{ item.description }}</p>
-              <p v-html="item.content"></p>
+            <div>
+              <p>{{ item.info }}</p>
             </div>
-            <router-link
-              :to="`/product/${item.id}`"
-              class="button primary">更多資訊</router-link>
+            <router-link :to="`/product/${item.id}`" class="button primary">更多資訊</router-link>
           </div>
         </div>
       </swiper-slide>
-    </swiper>
+    </swiper-container>
   </div>
 </template>
-
-<script>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { mapActions, mapState } from 'pinia';
-import spaceStore from '@/stores/spaceDataStore';
-import statusStore from '@/stores/statusStore';
-
-export default {
-  data() {
-    return {
-      title: '空間簡介',
-      link: 'service',
-      modules: [Navigation],
-    };
-  },
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
-  computed: {
-    ...mapState(spaceStore, ['spaceList']),
-    ...mapState(statusStore, ['isLoading', 'fullPage']),
-  },
-  methods: {
-    ...mapActions(spaceStore, ['getSpaceList']),
-  },
-  mounted() {
-    this.getSpaceList();
-  },
-};
-</script>

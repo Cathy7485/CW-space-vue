@@ -1,58 +1,27 @@
-<!-- eslint-disable import/extensions -->
+<script setup>
+import { ref } from 'vue';
+import HomeBlockTitle from '@/components/HomeBlockTitle.vue';
+import SwiperImage from '@/components/SwiperImage.vue';
+
+const title = ref('環境空間');
+const link = ref('space');
+</script>
+
 <template>
   <div class="home-space block">
     <HomeBlockTitle :title="title" :link="link" />
-    <swiper
-      class="space-swiper"
-      :slides-per-view="1"
-      :breakpoints="{
-        768: { slidesPerView: 2 },
-        992: { slidesPerView: 3}
-      }"
-      :space-between="0"
-      :modules="modules"
-      navigation
-      :pagination="{ clickable: true }">
-      <swiper-slide v-for="item in spaceList" :key="item.id">
-        <img :src="item.imageUrl" :alt="item.title">
-      </swiper-slide>
-    </swiper>
+    <SwiperImage />
   </div>
 </template>
 
-<script>
-import HomeBlockTitle from '@/components/HomeBlockTitle.vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import {
-  Navigation, Pagination,
-} from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { mapActions, mapState } from 'pinia';
-import spaceStore from '@/stores/spaceDataStore';
+<style scoped>
+.swiper-container :deep(pagination-bullet) {
+  background-color: white; /* 未選中的圓點顏色 */
+  opacity: 0.5;
+}
 
-export default {
-  data() {
-    return {
-      title: '環境空間',
-      link: 'space',
-      modules: [Navigation, Pagination],
-    };
-  },
-  components: {
-    HomeBlockTitle,
-    Swiper,
-    SwiperSlide,
-  },
-  methods: {
-    ...mapActions(spaceStore, ['getSpaceList']),
-  },
-  computed: {
-    ...mapState(spaceStore, ['spaceList']),
-  },
-  mounted() {
-    this.getSpaceList();
-  },
-};
-</script>
+.swiper-container :deep(pagination-bullet-active) {
+  background-color: white; /* 選中的圓點顏色 */
+  opacity: 1;
+}
+</style>
