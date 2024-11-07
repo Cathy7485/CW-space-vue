@@ -1,3 +1,17 @@
+<script setup>
+const { VITE_URL } = import.meta.env;
+
+const logout = () => {
+  const api = `${VITE_URL}logout`;
+  this.$http.post(api, this.user)
+    .then((res) => {
+      if (res.data.success) {
+        this.$router.push('/login');
+      }
+    });
+};
+</script>
+
 <template>
   <div class="p-4 bg-secondary mb-5">
     <div class="container d-flex justify-content-between align-items-center">
@@ -12,21 +26,3 @@
     </div>
   </div>
 </template>
-
-<script>
-const { VITE_URL } = import.meta.env;
-
-export default {
-  methods: {
-    logout() {
-      const api = `${VITE_URL}logout`;
-      this.$http.post(api, this.user)
-        .then((res) => {
-          if (res.data.success) {
-            this.$router.push('/login');
-          }
-        });
-    },
-  },
-};
-</script>
