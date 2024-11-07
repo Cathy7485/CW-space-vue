@@ -13,15 +13,3 @@ const link = ref('space');
     <SwiperImage />
   </div>
 </template>
-
-<style scoped>
-.swiper-container :deep(pagination-bullet) {
-  background-color: white; /* 未選中的圓點顏色 */
-  opacity: 0.5;
-}
-
-.swiper-container :deep(pagination-bullet-active) {
-  background-color: white; /* 選中的圓點顏色 */
-  opacity: 1;
-}
-</style>

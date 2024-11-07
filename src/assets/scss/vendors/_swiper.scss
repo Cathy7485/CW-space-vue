@@ -1,41 +1,47 @@
+.swiper-container {
+  position: relative;
+}
+
 .home-space {
+  .space-swiper {
+    &::part(bullet-active) {
+      background-color: #fff;
+    }
+
+    &::part(button-prev) {
+      color: #fff;
+    }
+
+    &::part(button-next) {
+      color: #fff;
+    }
+  }
+
   .swiper {
     &-slide {
       overflow: hidden;
-    }
-
-    &-button-prev {
-      color: #fff;
-    }
-
-    &-button-next {
-      color: #fff;
-    }
-
-    &-pagination-bullet-active {
-      background: #fff;
     }
   }
 }
 
 .home-service {
+  .service-swiper {
+    &::part(bullet-active) {
+      background-color: #fff;
+    }
+
+    &::part(button-prev) {
+      color: #fff;
+    }
+
+    &::part(button-next) {
+      color: #fff;
+    }
+  }
+
   .swiper {
     &-slice- {
       position: relative;
-    }
-
-    &-button-prev {
-      color: #fff;
-      top: 45%;
-    }
-
-    &-button-next {
-      color: #fff;
-      top: 45%;
-    }
-
-    &-pagination-bullet-active {
-      background: #000;
     }
   }
 }

@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
-import 'swiper/swiper-bundle.css';
+import 'swiper/css/bundle';
 
 const store = useSpaceStore();
 const { spaceList } = storeToRefs(store);
@@ -20,11 +20,8 @@ onMounted(() => {
     <swiper-container
       class="space-swiper"
       ref="swiperEl"
-      :navigation="{
-        prevEl: '.custom-prev',
-        nextEl: '.custom-next'
-      }"
-      pagination="true"
+      :navigation="true"
+      :pagination="true"
       :slides-per-view="3"
       :space-between="0"
     >
@@ -35,7 +32,5 @@ onMounted(() => {
         <img :src="item.imgUrl[0]" :alt="item.name">
       </swiper-slide>
     </swiper-container>
-    <button class="custom-prev swiper-button-prev">⬅️</button>
-    <button class="custom-next swiper-button-next">➡️</button>
   </div>
 </template>
