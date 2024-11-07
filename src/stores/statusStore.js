@@ -1,8 +1,14 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export default defineStore('statusStore', {
-  state: () => ({
-    fullPage: false,
-    isLoading: false,
-  }),
+export const useStatusStore = defineStore('statusStore', () => {
+  const fullPage = ref(false);
+  const isLoading = ref(false);
+
+  return {
+    fullPage,
+    isLoading,
+  };
 });
+
+export default useStatusStore;
