@@ -18,17 +18,38 @@
     top: 50%;
     left: 10%;
 
+    @include desktop {
+      top: auto;
+      bottom: 50px;
+    }
+
+    @include tablet-landscape {
+      left: 16px;
+    }
+
     h1 {
       font-size: 1.875rem;
       font-weight: 600;
+
+      @include desktop {
+        color: #fff;
+      }
     }
 
     h3 {
       font-size: 1rem;
+
+      @include desktop {
+        color: #fff;
+      }
     }
 
     .button {
       margin-top: 40px;
+
+      @include desktop {
+        margin-top: 24px;
+      }
     }
   }
 }
@@ -36,6 +57,7 @@
 .page-banner {
   position: relative;
   height: 450px;
+  margin-top: 80px;
 
   &::before {
     content: '';

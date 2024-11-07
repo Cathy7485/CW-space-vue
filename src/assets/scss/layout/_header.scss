@@ -1,34 +1,68 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  padding: 12px 16px;
+  transition: all .3s;
+  z-index: 3;
+
+  @include desktop {
+    padding: 0;
+    flex-direction: column;
+  }
+
+  &.fixed-top {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all .3s;
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: url(@/assets/images/logo-sm.png) no-repeat 0/cover;
+      transition: all .1s;
+    }
+
+    .nav-link {
+      color: #fff;
+    }
+  }
+}
+
 .logo {
   position: absolute;
   top: 0;
   left: 0;
   width: 154px;
   height: 174px;
-  background: url(@/assets/images/logo-md.png) no-repeat;
-  background-size: contain;
+  background: url(@/assets/images/logo-md.png) no-repeat 0/contain;
+  transition: all .1s;
   text-indent: -9999px;
+
+  @include desktop {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: url(@/assets/images/logo-sm.png) no-repeat 0/cover;
+  }
 }
 
 .nav {
-  padding: 20px 0;
+  position: relative;
+  margin-left: auto;
+  font-weight: 600;
 
   @include desktop {
-    padding: 16px 0;
-  }
-
-  &.nav-bg {
-    background: rgba(0, 0, 0, 0.5);
-
-    .logo {
-      width: 80px;
-      height: 80px;
-      background: url(@/assets/images/logo-sm.png) no-repeat;
-      background-size: cover;
-    }
+    margin: auto;
+    padding: 0;
+    display: block;
+    width: 100%;
   }
 
   &-link {
-    color: #fff;
+    padding: 8px 16px;
     margin-right: 12px;
 
     &:last-child {
@@ -41,22 +75,42 @@
 
     &:hover {
       background: $primary;
+      color: #000 !important;
     }
   }
 }
 
+.navbar-nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  @include desktop {
+    padding: 16px 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
 .navbar-toggler {
+  display: none;
+  position: absolute;
+  top: 24px;
+  right: 16px;
   padding: 0;
   border: none;
+  z-index: 1;
+
+  @include desktop {
+    display: block;
+  }
 
   &:focus {
     box-shadow: none;
   }
 
   &-icon {
-    width: 48px;
-    height: 48px;
-    background-image: url(@/assets/images/navbar-toggler-icon.svg);
-    background-size: contain;
+    width: 40px;
+    height: 40px;
+    background: url(@/assets/images/navbar-toggler-icon.svg) no-repeat 0/contain;
   }
 }
