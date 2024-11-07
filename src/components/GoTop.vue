@@ -1,42 +1,32 @@
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const goTopBtn = ref(null);
+const show = ref(false);
+
+const goTop = () => {
+  document.scrollingElement.scrollTop = 0;
+};
+const btnShow = () => {
+  if (window.scrollY > 150) {
+    show.value = true;
+  } else {
+    show.value = false;
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', btnShow);
+  goTopBtn.value.addEventListener('click', goTop);
+});
+</script>
+
 <template>
   <button
+    ref="goTopBtn"
     type="button"
-    class="go-top"
-    @click="scrollToTop"
-    v-if="show">
+    :class="['go-top', {'d-block': show}]"
+    >
     <span>回頂端</span>
   </button>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      show: false,
-    };
-  },
-  methods: {
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    },
-    toggleShow() {
-      const rootElement = document.documentElement;
-      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
-      if (rootElement.scrollTop / scrollTotal > 0.1) {
-        this.show = true;
-      } else {
-        this.show = false;
-      }
-    },
-  },
-  mounted() {
-    document.addEventListener('scroll', this.toggleShow);
-  },
-  unmounted() {
-    document.removeEventListener('scroll', this.toggleShow);
-  },
-};
-</script>

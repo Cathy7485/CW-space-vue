@@ -1,0 +1,43 @@
+.go-top {
+  position: relative;
+  display: none;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  background: #fff url(@/assets/images/angle-up.svg) no-repeat center 10px / 40px;
+  width: 80px;
+  height: 80px;
+  border: none;
+  box-shadow: 2px 2px 5px 2px rgba(132, 132, 132, 0.1);
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 99;
+
+  @include desktop {
+    width: 64px;
+    height: 64px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  @include tablet-landscape {
+    width: 56px;
+    height: 56px;
+    right: 0;
+    bottom: 0;
+    background-size: 60%;
+  }
+
+  &.d-block {
+    display: block;
+  }
+
+  span {
+    display: block;
+    margin-top: 32px;
+
+    @include desktop {
+      display: none;
+    }
+  }
+}
