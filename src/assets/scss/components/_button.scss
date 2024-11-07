@@ -14,6 +14,7 @@
   }
 
   &.primary {
+    border: solid 1px $primary;
     background: $primary;
     color: #000;
 
