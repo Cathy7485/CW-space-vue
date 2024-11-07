@@ -1,13 +1,19 @@
-<!-- eslint-disable vue/no-parsing-error -->
+<script setup>
+const props = defineProps({
+  title: {
+    type: String,
+    default: '',
+  },
+  link: {
+    type: String,
+    default: '',
+  },
+});
+</script>
+
 <template>
   <div class="block-title">
-    <div class="title">{{ title }}</div>
-    <router-link :to="`/${link}`">MORE</router-link>
+    <div class="hover-title">{{ props.title }}</div>
+    <router-link :to="`/${props.link}`">MORE</router-link>
   </div>
 </template>
-
-<script>
-export default {
-  props: ['title', 'link'],
-};
-</script>
