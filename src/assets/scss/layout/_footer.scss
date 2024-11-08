@@ -4,6 +4,14 @@
   color: #fff;
   padding: 8rem 0 6rem;
 
+  @include wide {
+    padding: 4rem 0;
+  }
+
+  @include tablet-landscape {
+    padding: 3rem 0 2rem;
+  }
+
   ul {
     padding-left: 0;
     margin-bottom: 0;
@@ -23,6 +31,10 @@
 .footer-logo {
   max-width: 240px;
   width: 100%;
+
+  @include tablet-landscape {
+    margin-top: 40px;
+  }
 
   img {
     width: 100%;
