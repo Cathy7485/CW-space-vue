@@ -1,1 +1,0 @@
-import{c as a,a as e,u as o,F as r,o as t,R as s}from"./index-D3kEdBIX.js";import{_ as n,F as _,a as c}from"./GoTop-3YiDCA1P.js";const l={__name:"FrontHome",setup(m){return(p,u)=>(t(),a(r,null,[e(n),e(o(s)),e(_),e(c)],64))}};export{l as default};
