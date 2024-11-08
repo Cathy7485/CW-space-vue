@@ -2,6 +2,7 @@
 import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
+import 'swiper/css/bundle';
 
 const store = useSpaceStore();
 const { spaceList } = storeToRefs(store);
@@ -16,9 +17,17 @@ onMounted(() => {
   <div class="home-service block">
     <swiper-container
       class="service-swiper"
-      navigation="true"
-      :slides-per-view="2"
+      :autoHeight="true"
+      :navigation="{
+        prevEl: '.custom-prev',
+        nextEl: '.custom-next'
+      }"
+      :slidesPerView="1"
       :space-between="32"
+      :breakpoints="{
+        768: { slidesPerView: 1},
+        992: { slidesPerView: 2}
+      }"
     >
       <swiper-slide
         v-for="item in spaceList"
@@ -39,5 +48,7 @@ onMounted(() => {
         </div>
       </swiper-slide>
     </swiper-container>
+    <button class="custom-prev"></button>
+    <button class="custom-next"></button>
   </div>
 </template>
