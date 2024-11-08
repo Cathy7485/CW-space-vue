@@ -22,8 +22,12 @@ onMounted(() => {
       ref="swiperEl"
       :navigation="true"
       :pagination="true"
-      :slides-per-view="3"
-      :space-between="0"
+      :slidesPerView="1"
+      :spaceBetween="0"
+      :breakpoints="{
+        768: { slidesPerView: 2},
+        992: { slidesPerView: 3}
+      }"
     >
       <swiper-slide
         v-for="item in spaceList"
