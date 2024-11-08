@@ -1,1 +1,0 @@
-import{_ as t,o as a,c as n,b as s,t as c}from"./index-Cdrxrgta.js";const o={props:["imagesUrl","pageTitle"]},r={class:"page-banner"},i=["src"],_={class:"page-title"};function l(p,d,e,g,m,f){return a(),n("div",r,[s("img",{src:e.imagesUrl,alt:"banner"},null,8,i),s("div",_,c(e.pageTitle),1)])}const u=t(o,[["render",l]]);export{u as P};
