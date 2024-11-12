@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
 import PageBanner from '@/components/PageBanner.vue';
+import CoworkingSpace from '@/components/CoworkingSpace.vue';
 import bannerUrl from '@/assets/images/shared-banner.jpg';
 import btnImg from '@/assets/images/arrow-right.svg';
 
@@ -37,49 +38,56 @@ onMounted(() => {
         :class="{'active': item.id === activeIdx }"
         @click="getActive(item.id)">{{ item.name }}</div>
     </div>
-    <div class="row" v-for="item in activeSpace" :key="item.id">
-      <div class="col-lg-5 d-flex flex-column">
-        <div class="space-title">{{ item.name }}</div>
-        <div class="d-block mb-3">
-          <span>開放時間：{{ item.open }}</span>
-          <p></p>
-          <span>費用：</span>
-          <span
-            v-if="item.price"
-            class="fw-bold">NT {{ item.price }} $元</span>
-          <span v-else>免費</span>
-        </div>
-        <div class="space-page-info">
-          <div class="title">詳細資訊</div>
-          <div class="p-3">{{ item.info }}</div>
-        </div>
-        <div class="mt-auto">
-          <router-link
-            to="reserve"
-            class="button primary me-3">立即預約</router-link>
+    <div class="space-info">
+      <div class="row" v-for="item in activeSpace" :key="item.id">
+        <div class="col-lg-5 d-flex flex-column">
+          <div class="space-title">{{ item.name }}</div>
+          <div class="d-block mb-3">
+            <p>開放時間：</p>
+            <div v-if="item.open.weekdays">週一到週五 {{ item.open.weekdays }} (不含例假日)</div>
+            <div
+              v-if="item.price"
+              class="fw-bold">
+              <!-- <div v-if="item.price[0]">單日體驗 NT$ {{ item.price[0].day }} 元</div>
+              <div>整月優惠 NT$ {{ item.price[1].month }} 元</div> -->
+            </div>
+            <div v-else>免費</div>
+          </div>
+          <div class="gray-info">
+            <div class="title">詳細資訊</div>
+            <div class="p-3">{{ item.info }}</div>
+          </div>
+          <div class="mt-auto">
             <router-link
-            to="reserve"
-            class="button">預約參觀</router-link>
+              to="reserve"
+              class="button primary me-3">立即預約</router-link>
+              <router-link
+              to="reserve"
+              class="button">預約參觀</router-link>
+          </div>
+        </div>
+        <div class="col-lg-7 gy-5 gy-lg-0 position-relative">
+          <swiper-container
+            class="space-img-box"
+            loop="true"
+            :navigation="{
+              nextEl: '.custom-next'
+            }">
+            <swiper-slide
+              class="space-img"
+              v-for="(url, idx) in item.imgUrl"
+              :key="url">
+              <img :src="url" :alt="`圖片${idx}`">
+            </swiper-slide>
+          </swiper-container>
+          <div class="custom-next space-next-btn">
+            <img :src="btnImg" alt="下一張圖片">
+          </div>
         </div>
       </div>
-      <div class="col-lg-7">
-        <swiper-container
-          class="space-img-box"
-          loop="true"
-          :navigation="{
-            nextEl: '.custom-next'
-          }">
-          <swiper-slide
-            class="space-img"
-            v-for="(url, idx) in item.imgUrl"
-            :key="url">
-            <img :src="url" :alt="`圖片${idx}`">
-          </swiper-slide>
-        </swiper-container>
-        <div class="custom-next space-next-btn">
-          <img :src="btnImg" alt="下一張圖片">
-        </div>
-      </div>
+    </div>
+    <div class="space-detail">
+      <CoworkingSpace />
     </div>
   </div>
 </template>
