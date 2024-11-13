@@ -1,3 +1,4 @@
+<!-- eslint-disable arrow-body-style -->
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
@@ -43,15 +44,8 @@ onMounted(() => {
         <div class="col-lg-5 d-flex flex-column">
           <div class="space-title">{{ item.name }}</div>
           <div class="d-block mb-3">
-            <p>開放時間：</p>
-            <div v-if="item.open.weekdays">週一到週五 {{ item.open.weekdays }} (不含例假日)</div>
-            <div
-              v-if="item.price"
-              class="fw-bold">
-              <!-- <div v-if="item.price[0]">單日體驗 NT$ {{ item.price[0].day }} 元</div>
-              <div>整月優惠 NT$ {{ item.price[1].month }} 元</div> -->
-            </div>
-            <div v-else>免費</div>
+            <div>開放時間：</div>
+            <p v-if="item.open.weekdays">週一到週五 {{ item.open.weekdays }} (不含例假日)</p>
           </div>
           <div class="gray-info">
             <div class="title">詳細資訊</div>
@@ -63,7 +57,7 @@ onMounted(() => {
               class="button primary me-3">立即預約</router-link>
               <router-link
               to="reserve"
-              class="button">預約參觀</router-link>
+              class="button">了解方案</router-link>
           </div>
         </div>
         <div class="col-lg-7 gy-5 gy-lg-0 position-relative">

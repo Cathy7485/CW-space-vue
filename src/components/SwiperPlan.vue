@@ -38,12 +38,30 @@ onMounted(() => {
           </div>
           <div class="info">
             <div class="title">{{ item.name }}</div>
-            <div>{{ item.price }}</div>
+            <div
+              v-for="price in item.price"
+              :key="price"
+            >
+              <div v-for="item in Object.keys(price)" :key="item">
+                <div v-if="item === 'day'">
+                  當日體驗 NT$ {{ Object.values(price)[0] }} / 天
+                </div>
+                <div v-if="item === 'month'">
+                  整月優惠 NT$ {{ Object.values(price)[0].length > 0
+                    ? '6000 起' : Object.values(price)[0] }} / 月
+                </div>
+                <div v-if="item === 'hour'">
+                  NT$ {{ Object.values(price)[0] }} / 時
+                </div>
+                <div v-if="item === 'free'">免費使用</div>
+                <div v-else></div>
+              </div>
+            </div>
             <hr>
             <div>
               <p>{{ item.info }}</p>
             </div>
-            <router-link :to="`/product/${item.id}`" class="button primary">更多資訊</router-link>
+            <router-link :to="`/space`" class="button primary">更多資訊</router-link>
           </div>
         </div>
       </swiper-slide>
