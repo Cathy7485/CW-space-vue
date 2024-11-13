@@ -67,3 +67,10 @@ window.addEventListener('scroll', addFixed);
     </nav>
   </header>
 </template>
+
+<style scoped>
+.router-link-active{
+  background: #D0FB55;
+  color: #000 !important;
+}
+</style>

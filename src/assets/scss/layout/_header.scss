@@ -21,7 +21,7 @@
     .logo {
       width: 80px;
       height: 80px;
-      background: url(@/assets/images/logo-sm.png) no-repeat 0/cover;
+      background: url(@/assets/images/logo-sm.png) no-repeat 0/cover !important;
       transition: all .1s;
     }
 
@@ -37,7 +37,7 @@
   left: 0;
   width: 154px;
   height: 174px;
-  background: url(@/assets/images/logo-md.png) no-repeat 0/contain;
+  background: url(@/assets/images/logo-md.png) no-repeat 0/contain !important;
   transition: all .1s;
   text-indent: -9999px;
 
