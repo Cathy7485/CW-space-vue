@@ -59,6 +59,10 @@
   height: 450px;
   margin-top: 80px;
 
+  @include desktop {
+    margin-top: 0;
+  }
+
   &::before {
     content: '';
     position: absolute;
