@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import NotFound from '@/views/NotFound.vue';
 
 const routes = [
   {
@@ -74,6 +75,7 @@ const routes = [
       },
     ],
   },
+  { path: '/:pathMatch(.*)*', component: NotFound },
 ];
 
 const router = createRouter({
