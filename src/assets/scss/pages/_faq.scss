@@ -1,0 +1,21 @@
+.notice-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 1.125rem;
+
+  li {
+    padding: 50px 16px;
+    border-top: solid 1px #E7E7E7;
+    line-height: 1.5;
+
+    @include tablet-landscape {
+      padding: 32px 16px;
+    }
+
+    &:last-child {
+      border-bottom: solid 1px #E7E7E7;
+    }
+  }
+}
