@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia';
 import { useNewsStore } from '@/stores/newsStore';
 
 const store = useNewsStore();
-const { newsList } = storeToRefs(store);
+const { newsSort } = storeToRefs(store);
 const { getNewsList } = store;
 
 onMounted(() => getNewsList());
@@ -12,7 +12,7 @@ onMounted(() => getNewsList());
 
 <template>
   <ul class="news-list">
-    <li class="news-item" v-for="item in newsList" :key="item.id">
+    <li class="news-item" v-for="item in newsSort" :key="item.id">
       <div class="item">
         <div class="news-title">{{ item.title }}</div>
         <div class="item-block">
