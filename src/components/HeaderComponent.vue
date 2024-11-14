@@ -1,12 +1,12 @@
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
-const { currentRoute } = useRouter();
-
+const route = useRoute();
+const router = useRouter();
 const header = ref(null);
 const isTop = ref(false);
-const route = currentRoute.value;
+const isShow = ref(false);
 
 const addFixed = () => {
   if (window.scrollY > 80) {
@@ -16,21 +16,20 @@ const addFixed = () => {
   }
 };
 
+const toggleNav = () => { isShow.value = !isShow.value; };
 window.addEventListener('scroll', addFixed);
+
+watch(() => router.currentRoute.value.name, () => toggleNav());
 </script>
 
 <template>
   <header :class="['header' ,{'fixed-top': isTop}]" ref="header">
     <router-link class="logo" to="/" ref="logo">CW-space</router-link>
-    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler ms-auto" type="button">
+      <span class="navbar-toggler-icon" @click="toggleNav"></span>
     </button>
     <nav class="nav navbar navbar-expand-lg nav-bg" ref="nav">
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-collapse" v-show="isShow">
         <div class="navbar-nav">
           <router-link
             :class="['nav-link', route.path === '/' ? 'text-white' : '' ]"
