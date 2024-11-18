@@ -4,9 +4,9 @@ import { ref, computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
 import PageBanner from '@/components/PageBanner.vue';
-import CoworkingSpace from '@/components/CoworkingSpace.vue';
 import bannerUrl from '@/assets/images/shared-banner.jpg';
 import btnImg from '@/assets/images/arrow-right.svg';
+import SpaceDetail from '@/components/SpaceDetail.vue';
 
 const activeIdx = ref(1);
 const pageTitle = ref('空間介紹');
@@ -81,7 +81,7 @@ onMounted(() => {
       </div>
     </div>
     <div class="space-detail">
-      <CoworkingSpace />
+      <SpaceDetail />
     </div>
   </div>
 </template>
