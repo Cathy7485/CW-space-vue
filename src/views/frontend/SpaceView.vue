@@ -1,6 +1,6 @@
 <!-- eslint-disable arrow-body-style -->
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
 import PageBanner from '@/components/PageBanner.vue';
@@ -8,18 +8,11 @@ import bannerUrl from '@/assets/images/shared-banner.jpg';
 import btnImg from '@/assets/images/arrow-right.svg';
 import SpaceDetail from '@/components/SpaceDetail.vue';
 
-const activeIdx = ref(1);
 const pageTitle = ref('空間介紹');
 
 const store = useSpaceStore();
-const { spaceList } = storeToRefs(store);
-const { getSpaceList } = store;
-
-const getActive = (id) => {
-  activeIdx.value = id;
-};
-
-const activeSpace = computed(() => spaceList.value.filter((item) => item.id === activeIdx.value));
+const { spaceList, activeSpace, activeIdx } = storeToRefs(store);
+const { getSpaceList, changeIdx } = store;
 
 onMounted(() => {
   getSpaceList();
@@ -37,7 +30,7 @@ onMounted(() => {
         :key="item.id"
         class="space-tab-item"
         :class="{'active': item.id === activeIdx }"
-        @click="getActive(item.id)">{{ item.name }}</div>
+        @click="changeIdx(item.id)">{{ item.name }}</div>
     </div>
     <div class="space-info">
       <div class="row" v-for="item in activeSpace" :key="item.id">
