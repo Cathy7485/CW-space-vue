@@ -157,8 +157,12 @@
 
   .type-btn {
     width: 30%;
-    display: flex;
-    flex-direction: column;
+  }
+
+  .type-btn-inner {
+    position: relative;
+    height: 400px;
+    overflow: auto hidden;
   }
 
   .btn {

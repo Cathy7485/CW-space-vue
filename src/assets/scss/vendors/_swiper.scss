@@ -126,3 +126,78 @@
     overflow: visible !important;
   }
 }
+
+.space-type-detail {
+  .type-btn {
+    .custom-prev {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      background: #fff;
+      border: solid 1px #848484;
+      border-radius: 50%;
+      margin-top: 8px;
+      transition: all .3s;
+
+      &:hover {
+        background: $primary;
+        transition: all .3s;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: calc(50% - 2px);
+        left: calc(50% - 5px);
+        transform: rotate(45deg);
+        border: 2px solid #464646;
+        border-right: 0;
+        border-bottom: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+    }
+
+    .custom-next {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      background: #fff;
+      border: solid 1px #535353;
+      border-radius: 50%;
+      margin-left: 8px;
+      margin-top: 8px;
+      transition: all .3s;
+
+      &:hover {
+        background: $primary;
+        transition: all .3s;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: calc(50% - 5px);
+        left: calc(50% - 5px);
+        transform: rotate(225deg);
+        border: 2px solid #464646;
+        border-right: 0;
+        border-bottom: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+    }
+
+    .swiper-button-disabled {
+      opacity: 0.4;
+
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+}

@@ -23,7 +23,6 @@ onMounted(() => {
       <template v-if="spaceDetail[0].capacity > 0">
         <div class="flex-title">
           <div class="title">空間資訊</div>
-          <router-link to="reserve" class="button primary">立即預約</router-link>
         </div>
         <div class="space-type-detail">
           <div class="type-img">
@@ -35,31 +34,48 @@ onMounted(() => {
             </template>
           </div>
           <div class="type-btn">
-            <div
-              :class="['btn', {'active': index === defaultIdx}]"
-              v-for="(item, index) in spaceDetail"
-              :key="item"
-              @click="addActive(index)"
+            <swiper-container
+              class="type-swiper type-btn-inner"
+              :loop="false"
+              :direction="'vertical'"
+              :slidesPerView="3"
+              :spaceBetween="12"
+              :mousewheel="true"
+              :navigation="{
+                prevEl: '.type-btn .custom-prev',
+                nextEl: '.type-btn .custom-next'
+              }"
             >
-              <div>
-                <span v-if="spaceType === 'seat'">座位</span>
-                <span v-if="spaceType === 'room'">空間</span>
-                {{ item.sort }}
-              </div>
-              <div>
-                <span v-if="item.price.day">
-                  NT$ {{ item.price.day }} 元/日，
-                </span>
-                <span v-if="item.price.month">
-                  NT$ {{ item.price.month }} 元/月
-                </span>
-                <span v-if="item.price.hour">
-                  NT${{item.price.hour}}/小時
-                </span>
-              </div>
-              <div>容納人數：{{ item.capacity }} 人</div>
-              <div class="bg-text">{{ item.sort }}</div>
-            </div>
+              <swiper-slide
+                :class="['btn', {'active': index === defaultIdx}]"
+                v-for="(item, index) in spaceDetail"
+                :key="item"
+                @click="addActive(index)"
+              >
+                <div>
+                  <span v-if="spaceType === 'seat'">座位</span>
+                  <span v-if="spaceType === 'room'">空間</span>
+                  {{ item.sort }}
+                </div>
+                <div>
+                  <span v-if="item.price.day">
+                    NT$ {{ item.price.day }} 元/日，
+                  </span>
+                  <span v-if="item.price.month">
+                    NT$ {{ item.price.month }} 元/月
+                  </span>
+                  <span v-if="item.price.hour">
+                    NT${{item.price.hour}}/小時
+                  </span>
+                </div>
+                <div>容納人數：{{ item.capacity }} 人</div>
+                <div class="bg-text">{{ item.sort }}</div>
+              </swiper-slide>
+            </swiper-container>
+            <template v-if="space.imgUrl.length < 3">
+              <button class="custom-prev"></button>
+              <button class="custom-next"></button>
+            </template>
           </div>
         </div>
       </template>
