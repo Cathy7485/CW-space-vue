@@ -18,7 +18,13 @@
   border: solid 1px #ddd;
   font-weight: 600;
   padding: 18px 0;
+  transform: all .3s;
   cursor: pointer;
+
+  &:hover {
+    background: rgba(198, 198, 198, 0.1);
+    transform: all .3s;
+  }
 
   &.active {
     background: #000;

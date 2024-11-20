@@ -9,6 +9,10 @@
     &:nth-of-type(odd) {
       background: #FAFAFA;
     }
+
+    &:first-of-type {
+      border-top: solid 1px #E7E7E7;
+    }
   }
 
   label {

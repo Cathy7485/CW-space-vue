@@ -18,7 +18,7 @@ const changeIdx = (idx) => { activeIdx.value = idx; };
         :class="{ 'active': index === activeIdx }" @click="changeIdx(index)">{{ item }}</div>
     </div>
     <div class="visit-reservation reserve-list">
-      <span class="fs-6 text-end mb-2 d-block">請填寫表單，將會有專人聯繫您</span>
+      <span class="fs-6 text-danger text-end mb-2 d-block">請填寫表單，將會有專人聯繫您</span>
       <dl class="form-list">
         <dt class="form-title">
           <label for="user-name">姓名<span class="text-danger ms-2">*</span></label>
