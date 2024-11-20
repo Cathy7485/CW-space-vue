@@ -1,0 +1,30 @@
+.reserve-list {
+  font-size: 1.125rem;
+
+  dl {
+    padding: 32px 16px;
+    margin-bottom: 0;
+    border-bottom: solid 1px #E7E7E7;
+
+    &:nth-of-type(odd) {
+      background: #FAFAFA;
+    }
+  }
+
+  label {
+    margin-bottom: 4px;
+  }
+
+  input {
+    width: 100%;
+    border: solid 2px #E7E7E7;
+    padding: 8px 16px;
+  }
+
+  select {
+    width: 100%;
+    border: solid 2px #E7E7E7;
+    padding: 8px 16px;
+    border-radius: 0;
+  }
+}

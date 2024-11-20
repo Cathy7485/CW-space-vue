@@ -25,3 +25,19 @@
     }
   }
 }
+
+.btn-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+
+  .button {
+    width: calc(50% - 16px);
+    text-align: center;
+
+    &:last-child {
+      margin-left: 8px;
+    }
+  }
+}
