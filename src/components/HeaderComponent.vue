@@ -61,6 +61,12 @@ watch(() => router.currentRoute.value.name, () => toggleNav());
           >
             常見問題
           </router-link>
+          <router-link
+            :class="['nav-link', route.path === '/' ? 'text-white' : '' ]"
+            to="/reserve"
+          >
+            立即預約
+          </router-link>
         </div>
       </div>
     </nav>
