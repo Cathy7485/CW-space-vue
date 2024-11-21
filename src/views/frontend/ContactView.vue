@@ -15,7 +15,7 @@ const changeIdx = (idx) => { activeIdx.value = idx; };
 <template>
   <PageBanner
     :images-url="bannerUrl"
-    :page-title="pageTitle"></PageBanner>
+    :page-title="`${pageTitle} - ${contactTabs[activeIdx]}`"></PageBanner>
   <div class="block container mt-5">
     <div class="space-tabs">
       <div v-for="(item, index) in contactTabs" :key="item" class="space-tab-item"
