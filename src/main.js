@@ -13,6 +13,5 @@ const app = createApp(App);
 
 app.use(pinia);
 app.use(router);
-
 app.directive('timeformat', timeformat);
 app.mount('#app');

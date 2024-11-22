@@ -1,8 +1,11 @@
 <script setup>
 import { ref } from 'vue';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 import PageBanner from '@/components/PageBanner.vue';
 import bannerUrl from '@/assets/images/visit-banner.jpg';
 
+const date = ref();
 const activeIdx = ref(0);
 const contactTabs = ref(['預約參觀', '預約空間']);
 
@@ -16,9 +19,9 @@ const changeIdx = (idx) => { activeIdx.value = idx; };
       <div v-for="(item, index) in contactTabs" :key="item" class="space-tab-item"
         :class="{ 'active': index === activeIdx }" @click="changeIdx(index)">{{ item }}</div>
     </div>
-    <div class="visit-reservation reserve-list">
+    <div class="visit-reservation form-list">
       <span class="fs-6 text-danger text-end mb-2 d-block">請填寫表單，將會有專人聯繫您</span>
-      <dl class="form-list">
+      <dl>
         <dt class="form-title">
           <label for="user-name">姓名<span class="text-danger ms-2">*</span></label>
         </dt>
@@ -26,7 +29,7 @@ const changeIdx = (idx) => { activeIdx.value = idx; };
           <input type="text" name="user-name" placeholder="請輸入姓名">
         </dd>
       </dl>
-      <dl class="form-list">
+      <dl>
         <dt class="form-title">
           <label for="company-name">公司名稱<span class="text-danger ms-2">*</span></label>
         </dt>
@@ -34,7 +37,7 @@ const changeIdx = (idx) => { activeIdx.value = idx; };
           <input type="text" name="company-name" placeholder="請輸入公司名稱">
         </dd>
       </dl>
-      <dl class="form-list">
+      <dl>
         <dt class="form-title">
           <label for="contact-phone">聯絡電話<span class="text-danger ms-2">*</span></label>
         </dt>
@@ -42,7 +45,7 @@ const changeIdx = (idx) => { activeIdx.value = idx; };
           <input type="tel" name="contact-phone" placeholder="請輸入聯絡電話">
         </dd>
       </dl>
-      <dl class="form-list">
+      <dl>
         <dt class="form-title">
           <label for="email">電子信箱<span class="text-danger ms-2">*</span></label>
         </dt>
@@ -50,7 +53,7 @@ const changeIdx = (idx) => { activeIdx.value = idx; };
           <input type="email" name="email" placeholder="請輸入電子信箱">
         </dd>
       </dl>
-      <dl class="form-list">
+      <dl>
         <dt class="form-title">
           <label for="space-type">想要參觀哪個空間<span class="text-danger ms-2">*</span></label>
         </dt>
@@ -63,7 +66,7 @@ const changeIdx = (idx) => { activeIdx.value = idx; };
           </select>
         </dd>
       </dl>
-      <dl class="form-list">
+      <dl>
         <dt class="form-title">
           <label for="visit-date">參觀日期<span class="text-danger ms-2">*</span></label>
         </dt>
@@ -71,12 +74,13 @@ const changeIdx = (idx) => { activeIdx.value = idx; };
           <div class="">
             <div class="row">
               <div class="col-lg-6">
-                <input
+                <VueDatePicker v-model="date" :enable-time-picker="false" />
+                <!-- <input
                   type="text"
                   id="date-input"
                   class="hasDatepicker"
                   name="visit-date"
-                  placeholder="請選擇日期">
+                  placeholder="請選擇日期"> -->
               </div>
               <div class="col-lg-6">
                 <select type="text" class="visit-time form-select w-100">
