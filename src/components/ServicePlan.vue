@@ -1,21 +1,16 @@
 <script setup>
-import { onMounted } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useSpaceStore } from '@/stores/spaceStore';
-import 'swiper/css/bundle';
-
-const store = useSpaceStore();
-const { spaceList } = storeToRefs(store);
-const { getSpaceList } = store;
-
-onMounted(() => {
-  getSpaceList();
-});
 </script>
 
 <template>
   <div class="service-plan block">
-    <div v-for="item in spaceList" :key="item.id">
+    <pre>
+      {{ spaceDetail }}
+    </pre>
+    <div ref="activeIdx">
+      {{ activeSpace }}
+      動態資料
+    </div>
+    <!-- <div v-for="item in spaceList" :key="item.id">
       <div class="service-item">
         <div class="img">
           <img :src="item.imgUrl[0]" :alt="item.name">
@@ -34,11 +29,6 @@ onMounted(() => {
               NT$ {{ Object.values(item.type[0].price)[0] }} / 時
             </div>
           </template>
-          <template v-else>
-            <div v-for="price in item.type" :key="price">
-              <div v-if="Object.values(price.price)[0] === 0">免費使用</div>
-            </div>
-          </template>
           <hr>
           <div>
             <p>{{ item.info }}</p>
@@ -46,6 +36,6 @@ onMounted(() => {
           <router-link :to="`/space`" class="button primary">更多資訊</router-link>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
