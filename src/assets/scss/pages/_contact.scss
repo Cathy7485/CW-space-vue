@@ -1,0 +1,34 @@
+.location-section {
+  display: flex;
+  background: #000;
+  color: #fff;
+
+  @include desktop {
+    flex-direction: column;
+    margin-bottom: 48px;
+  }
+
+  hr {
+    color: #fff;
+    margin: 32px 0;
+    opacity: 0.6;
+  }
+
+  .left {
+    width: 30%;
+    padding: 32px;
+
+    @include desktop {
+      width: 100%;
+    }
+  }
+
+  .right {
+    width: 70%;
+    height: 416px;
+
+    @include desktop {
+      width: 100%;
+    }
+  }
+}
