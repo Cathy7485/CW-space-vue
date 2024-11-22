@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import bannerUrl from '@/assets/images/plan-banner.jpg';
 import PageBanner from '@/components/PageBanner.vue';
-import ServicePlan from '@/components/SwiperPlan.vue';
+import ServicePlan from '@/components/ServicePlan.vue';
 
 const activeIdx = ref(0);
 const spacePlan = ref(['日租方案', '月租方案', '年租方案']);
