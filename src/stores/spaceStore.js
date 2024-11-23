@@ -15,6 +15,10 @@ export const useSpaceStore = defineStore('spaceStore', () => {
   const activePlan = computed(() => spaceList.value.filter(
     (item) => Object.keys(item.type[0].price).includes(planList.value[activeIdx.value]),
   ));
+  const spacePlan = computed(() => spaceList.value.filter(
+    (item) => !Object.keys(item.type[0].price).includes('free'),
+  ));
+
   const changeIdx = (index) => {
     activeIdx.value = index;
   };
@@ -37,6 +41,7 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     spaceType,
     planList,
     activePlan,
+    spacePlan,
   };
 });
 

@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import '@vuepic/vue-datepicker/dist/main.css';
 import ReserveVisit from '@/components/ReserveVisit.vue';
+import ReserveSpace from '@/components/ReserveSpace.vue';
 import PageBanner from '@/components/PageBanner.vue';
 import bannerUrl from '@/assets/images/visit-banner.jpg';
 
@@ -18,6 +18,7 @@ const changeIdx = (idx) => { activeIdx.value = idx; };
       <div v-for="(item, index) in contactTabs" :key="item" class="space-tab-item"
         :class="{ 'active': index === activeIdx }" @click="changeIdx(index)">{{ item }}</div>
     </div>
-    <ReserveVisit />
+    <ReserveVisit v-if="activeIdx === 0" />
+    <ReserveSpace v-else />
   </div>
 </template>
