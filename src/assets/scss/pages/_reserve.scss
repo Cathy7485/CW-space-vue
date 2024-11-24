@@ -1,3 +1,85 @@
+.reverse-step {
+  max-width: 1200px;
+  padding: 0;
+  margin: 0 0 40px 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+
+  .step {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: calc(25% - 16px);
+    text-align: center;
+
+    &:last-child {
+      .circle {
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    &.active {
+      .circle {
+        background: $primary;
+        color: #000;
+
+        &::after {
+          background: $primary;
+        }
+      }
+    }
+  }
+
+  .circle {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    margin-bottom: 32px;
+    border-radius: 50%;
+    background: #E7E7E7;
+    color: #848484;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 26px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -650%;
+      transform: translateY(-50%);
+      width: 650%;
+      height: 2px;
+      background: #E7E7E7;
+
+      @include wide {
+        right: -500%;
+        width: 500%;
+      }
+
+      @include desktop {
+        right: -300%;
+        width: 300%;
+      }
+
+      @include tablet-landscape {
+        right: -200%;
+        width: 200%;
+      }
+    }
+  }
+
+  .text {
+    max-width: 90%;
+  }
+}
+
 .reserve-list {
   font-size: 1.125rem;
 

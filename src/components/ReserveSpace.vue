@@ -13,11 +13,23 @@ onMounted(() => {
 </script>
 
 <template>
-  <ul>
-    <li>選擇空間</li>
-    <li>選擇時段/座位</li>
-    <li>填寫資料</li>
-    <li>預約完成</li>
+  <ul class="reverse-step">
+    <li class="step active">
+      <div class="circle">1</div>
+      <div class="text">選擇空間</div>
+    </li>
+    <li class="step">
+      <div class="circle">2</div>
+      <div class="text">選擇時段/座位</div>
+    </li>
+    <li class="step">
+      <div class="circle">3</div>
+      <div class="text">填寫資料</div>
+    </li>
+    <li class="step">
+      <div class="circle">4</div>
+      <div class="text">預約完成</div>
+    </li>
   </ul>
   <div class="reserve-list step-one">
     <fieldset>
