@@ -1,11 +1,12 @@
 <script setup>
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
 
 const store = useSpaceStore();
 const { spacePlan } = storeToRefs(store);
 const { getSpaceList } = store;
+const picked = ref('共享辦公空間');
 
 onMounted(() => {
   getSpaceList();
@@ -35,21 +36,24 @@ onMounted(() => {
     <fieldset>
       <dl>
         <dt>
-          <span class="">想要預約哪個空間*</span>
+          <span class="">想要預約哪個空間<span class="text-danger ms-2">*</span></span>
         </dt>
-        <dd class="text-end">
-          <span class="choice-space">您目前選擇的是：共享辦公空間</span>
+        <dd class="text-end text-secondary fs-6 fw-bold mt-2">
+          <span class="choice-space">您目前選擇的是：{{ picked }}</span>
         </dd>
       </dl>
       <dl class="option" v-for="space in spacePlan" :key="space.id">
-        <label for="Coworking" class="">
-          <dt class="left">
-            <div class="space-img"><img :src="space.imgUrl[0]" :alt="space.name"></div>
-          </dt>
-          <dd class="right">
-            <div class="name">{{ space.name }}</div>
+        <input type="radio" name="space" :id="space.name" :value="space.name" v-model="picked">
+        <label :for="space.name">
+          <dd>
+            <div class="left">
+              <div class="space-img"><img :src="space.imgUrl[0]" :alt="space.name"></div>
+            </div>
+            <div class="right">
+              <div class="name">{{ space.name }}</div>
+            </div>
+            <div class="bg-text">{{ space.enName }}</div>
           </dd>
-          <span class="bg-text">{{ space.enName }}</span>
         </label>
       </dl>
       <div class="btn-block">

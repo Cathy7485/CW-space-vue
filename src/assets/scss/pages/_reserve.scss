@@ -21,6 +21,17 @@
       }
     }
 
+    &.finish {
+      .circle {
+        background: $primary;
+        color: #000;
+
+        &::after {
+          background: $primary;
+        }
+      }
+    }
+
     &.active {
       .circle {
         background: $primary;
@@ -95,6 +106,10 @@
     &:first-of-type {
       border-top: solid 1px #E7E7E7;
     }
+
+    &.option {
+      padding: 0;
+    }
   }
 
   label {
@@ -114,6 +129,19 @@
     border-radius: 0;
   }
 
+  fieldset {
+    input[type=radio] {
+      display: none;
+    }
+
+    input:checked+label {
+      margin-bottom: 0;
+      border: solid 5px $primary;
+      cursor: default;
+      transition: all .1s;
+    }
+  }
+
   .option {
     position: relative;
     overflow: hidden;
@@ -123,13 +151,9 @@
     }
 
     label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      @include tablet-landscape {
-        flex-direction: column;
-      }
+      width: 100%;
+      padding: 16px 32px;
+      transition: all .1s;
     }
 
     .name {
@@ -141,6 +165,18 @@
 
       @include tablet-landscape {
         margin-top: 40px;
+      }
+    }
+
+    dd {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+
+      @include tablet-landscape {
+        flex-direction: column;
       }
     }
   }
