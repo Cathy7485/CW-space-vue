@@ -21,7 +21,7 @@
       }
     }
 
-    &.finish {
+    &.active {
       .circle {
         background: $primary;
         color: #000;
@@ -32,7 +32,7 @@
       }
     }
 
-    &.active {
+    &:has(~ .active) {
       .circle {
         background: $primary;
         color: #000;

@@ -2,11 +2,16 @@
 import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 
 const store = useSpaceStore();
 const { spacePlan } = storeToRefs(store);
 const { getSpaceList } = store;
+const step = ref(2);
+const stepText = ['選擇空間', '選擇時段/座位', '填寫資料', '預約完成'];
 const picked = ref('共享辦公空間');
+const date = ref();
 
 onMounted(() => {
   getSpaceList();
@@ -15,24 +20,16 @@ onMounted(() => {
 
 <template>
   <ul class="reverse-step">
-    <li class="step active">
-      <div class="circle">1</div>
-      <div class="text">選擇空間</div>
-    </li>
-    <li class="step">
-      <div class="circle">2</div>
-      <div class="text">選擇時段/座位</div>
-    </li>
-    <li class="step">
-      <div class="circle">3</div>
-      <div class="text">填寫資料</div>
-    </li>
-    <li class="step">
-      <div class="circle">4</div>
-      <div class="text">預約完成</div>
+    <li
+      :class="['step', { 'active': (index + 1 ) === step}]"
+      v-for="(text, index) in stepText"
+      :key="text"
+    >
+      <div class="circle">{{ index+1 }}</div>
+      <div class="text">{{ text }}</div>
     </li>
   </ul>
-  <div class="reserve-list step-one">
+  <div class="reserve-list" v-if="step === 1">
     <fieldset>
       <dl>
         <dt>
@@ -56,10 +53,40 @@ onMounted(() => {
           </dd>
         </label>
       </dl>
-      <div class="btn-block">
-        <router-link to="/" class="button" title="回上頁">回上頁</router-link>
-        <router-link to="" class="button primary" title="下一步">下一步</router-link>
-      </div>
     </fieldset>
+  </div>
+  <div v-if="step === 2">
+    <div class="reserve-list form-list">
+      <dl>
+        <dt class="form-title">
+          您目前選擇的空間
+        </dt>
+        <dd class="form-info">
+          {{ picked }}
+        </dd>
+      </dl>
+      <dl>
+        <dt class="form-title">
+          <label for="user-name">預約日期<span class="text-danger ms-2">*</span></label>
+        </dt>
+        <dd class="form-info">
+          <VueDatePicker v-model="date" :enable-time-picker="false" />
+        </dd>
+      </dl>
+      <dl>
+        <dt class="form-title">
+          <label for="seat">座位選擇<span class="text-danger ms-2">*</span></label>
+        </dt>
+        <dd class="form-info">
+          <select name="seat" id="">
+            <option value="1">座位1號</option>
+          </select>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="btn-block">
+    <router-link to="/" class="button" title="回上頁">回上頁</router-link>
+    <router-link to="" class="button primary" title="下一步">下一步</router-link>
   </div>
 </template>
