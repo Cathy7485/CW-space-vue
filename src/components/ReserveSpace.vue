@@ -3,17 +3,38 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
+import { useStatusStore } from '@/stores/statusStore';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
+// import axios from 'axios';
 
+// const { VITE_DATA_URL } = import.meta.env;
+// const fromData = ref({
+//   name: '',
+//   company: '',
+//   phone: '',
+//   email: '',
+//   space: '',
+//   appointment: '',
+//   time: '',
+// });
 const router = useRouter();
+
 const store = useSpaceStore();
 const { spacePlan, pickedType } = storeToRefs(store);
 const { getSpaceList, changeSpaceId } = store;
+
+const statusStore = useStatusStore();
+const { isLoading } = storeToRefs(statusStore);
+
 const step = ref(1);
 const stepText = ['選擇空間', '選擇時段/座位', '填寫資料', '預約完成'];
 const picked = ref('共享辦公空間');
 const date = ref(new Date());
+
+// const submitVisit = () => {
+//   axios.post(`${VITE_DATA_URL}/reserves`, fromData.value);
+// };
 
 const goNextStep = () => {
   if (step.value === 4) return;
@@ -44,6 +65,7 @@ onMounted(() => {
     </li>
   </ul>
   <div class="reserve-list" v-if="step === 1">
+    <LoadingComponent :active="isLoading" />
     <fieldset>
       <dl>
         <dt>
@@ -103,8 +125,8 @@ onMounted(() => {
       <dl class="row align-items-center" >
         <dt class="form-title col-md-2">
           <label for="seat">
-            <span v-if="picked === '共享辦公空間'">座位</span>
-            <span v-else>空間</span>選擇
+            <span v-if="picked === '共享辦公空間'">座位選擇</span>
+            <span v-else>空間選擇</span>
             <span class="text-danger ms-2">*</span>
           </label>
         </dt>
