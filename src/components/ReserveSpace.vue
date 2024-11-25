@@ -8,13 +8,21 @@ import '@vuepic/vue-datepicker/dist/main.css';
 
 const router = useRouter();
 const store = useSpaceStore();
-const { spacePlan } = storeToRefs(store);
-const { getSpaceList } = store;
-const step = ref(2);
+const { spacePlan, pickedType } = storeToRefs(store);
+const { getSpaceList, changeSpaceId } = store;
+const step = ref(1);
 const stepText = ['選擇空間', '選擇時段/座位', '填寫資料', '預約完成'];
 const picked = ref('共享辦公空間');
 const date = ref(new Date());
 
+const goNextStep = () => {
+  if (step.value === 4) return;
+  step.value += 1;
+};
+const goBackStep = () => {
+  if (step.value === 1) return;
+  step.value -= 1;
+};
 const goBack = () => {
   router.go(-1);
 };
@@ -46,8 +54,15 @@ onMounted(() => {
         </dd>
       </dl>
       <dl class="option" v-for="space in spacePlan" :key="space.id">
-        <input type="radio" name="space" :id="space.name" :value="space.name" v-model="picked">
-        <label :for="space.name">
+        <input
+          type="radio"
+          name="space"
+          :id="space.id"
+          :value="space.name"
+          v-model="picked"
+          @click="changeSpaceId(space.id)"
+        >
+        <label :for="space.id">
           <dd>
             <div class="left">
               <div class="space-img"><img :src="space.imgUrl[0]" :alt="space.name"></div>
@@ -60,6 +75,10 @@ onMounted(() => {
         </label>
       </dl>
     </fieldset>
+    <div class="btn-block">
+    <router-link to="/" @click="goBack" class="button" title="回首頁">回首頁</router-link>
+    <button type="button" @click="goNextStep" class="button primary" title="下一步">下一步</button>
+  </div>
   </div>
   <div v-if="step === 2">
     <div class="reserve-list form-list">
@@ -81,20 +100,28 @@ onMounted(() => {
           <VueDatePicker v-model="date" :enable-time-picker="false" />
         </dd>
       </dl>
-      <dl class="row align-items-center">
+      <dl class="row align-items-center" >
         <dt class="form-title col-md-2">
-          <label for="seat">座位選擇<span class="text-danger ms-2">*</span></label>
+          <label for="seat">
+            <span v-if="picked === '共享辦公空間'">座位</span>
+            <span v-else>空間</span>選擇
+            <span class="text-danger ms-2">*</span>
+          </label>
         </dt>
         <dd class="form-info col-md-10 mb-0">
           <select name="seat" id="seat">
-            <option value="1">座位1號</option>
+            <option
+              v-for="item in pickedType"
+              :key="item"
+              :value="item.sort"
+            >{{ item.sort }}</option>
           </select>
         </dd>
       </dl>
     </div>
-  </div>
-  <div class="btn-block">
-    <button type="button" @click="goBack" class="button" title="回上頁">回上頁</button>
-    <router-link to="" class="button primary" title="下一步">下一步</router-link>
+    <div class="btn-block">
+      <button type="button" @click="goBackStep" class="button" title="回上一步">回上一步</button>
+      <button type="button" @click="goNextStep" class="button primary" title="下一步">下一步</button>
+    </div>
   </div>
 </template>

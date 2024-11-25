@@ -8,6 +8,7 @@ export const useSpaceStore = defineStore('spaceStore', () => {
   const spaceList = ref([]);
   const activeIdx = ref(0);
   const planList = ref(['day', 'month', 'year']);
+  const spaceId = ref(1);
 
   const activeSpace = computed(() => spaceList.value.filter((item) => item.id === activeIdx.value));
   const spaceDetail = computed(() => activeSpace.value[0].type);
@@ -19,6 +20,12 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     (item) => !Object.keys(item.type[0].price).includes('free'),
   ));
 
+  const pickedSpace = computed(() => spacePlan.value.filter((item) => item.id === spaceId.value));
+  const pickedType = computed(() => (pickedSpace.value[0].type));
+
+  const changeSpaceId = (id) => {
+    spaceId.value = id;
+  };
   const changeIdx = (index) => {
     activeIdx.value = index;
   };
@@ -34,6 +41,7 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     getSpaceList,
     changeIdx,
     changePlan,
+    changeSpaceId,
     spaceList,
     activeIdx,
     activeSpace,
@@ -42,6 +50,9 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     planList,
     activePlan,
     spacePlan,
+    spaceId,
+    pickedSpace,
+    pickedType,
   };
 });
 

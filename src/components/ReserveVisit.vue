@@ -79,7 +79,7 @@ const date = ref(new Date());
       </dd>
     </dl>
     <div class="btn-block">
-      <router-link to="/" class="button secondary" title="返回">返回</router-link>
+      <router-link to="/" class="button secondary" title="回首頁">回首頁</router-link>
       <button type="button" class="button primary" title="送出">送出</button>
     </div>
   </div>
