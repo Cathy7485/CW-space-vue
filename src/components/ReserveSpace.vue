@@ -1,17 +1,23 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
+const router = useRouter();
 const store = useSpaceStore();
 const { spacePlan } = storeToRefs(store);
 const { getSpaceList } = store;
 const step = ref(2);
 const stepText = ['選擇空間', '選擇時段/座位', '填寫資料', '預約完成'];
 const picked = ref('共享辦公空間');
-const date = ref();
+const date = ref(new Date());
+
+const goBack = () => {
+  router.go(-1);
+};
 
 onMounted(() => {
   getSpaceList();
@@ -57,28 +63,30 @@ onMounted(() => {
   </div>
   <div v-if="step === 2">
     <div class="reserve-list form-list">
-      <dl>
-        <dt class="form-title">
-          您目前選擇的空間
+      <dl class="row align-items-center">
+        <dt class="form-title col-md-2">
+          <label>
+            目前選擇
+          </label>
         </dt>
-        <dd class="form-info">
+        <dd class="form-info col-md-10 mb-0">
           {{ picked }}
         </dd>
       </dl>
-      <dl>
-        <dt class="form-title">
+      <dl class="row align-items-center">
+        <dt class="form-title col-md-2">
           <label for="user-name">預約日期<span class="text-danger ms-2">*</span></label>
         </dt>
-        <dd class="form-info">
+        <dd class="form-info col-md-10 mb-0">
           <VueDatePicker v-model="date" :enable-time-picker="false" />
         </dd>
       </dl>
-      <dl>
-        <dt class="form-title">
+      <dl class="row align-items-center">
+        <dt class="form-title col-md-2">
           <label for="seat">座位選擇<span class="text-danger ms-2">*</span></label>
         </dt>
-        <dd class="form-info">
-          <select name="seat" id="">
+        <dd class="form-info col-md-10 mb-0">
+          <select name="seat" id="seat">
             <option value="1">座位1號</option>
           </select>
         </dd>
@@ -86,7 +94,7 @@ onMounted(() => {
     </div>
   </div>
   <div class="btn-block">
-    <router-link to="/" class="button" title="回上頁">回上頁</router-link>
+    <button type="button" @click="goBack" class="button" title="回上頁">回上頁</button>
     <router-link to="" class="button primary" title="下一步">下一步</router-link>
   </div>
 </template>
