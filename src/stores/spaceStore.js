@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
+import { useStatusStore } from '@/stores/statusStore';
 import axios from 'axios';
 
 const { VITE_DATA_URL } = import.meta.env;
@@ -9,10 +10,15 @@ export const useSpaceStore = defineStore('spaceStore', () => {
   const activeIdx = ref(0);
   const planList = ref(['day', 'month', 'year']);
   const spaceId = ref(1);
+  const isFullPage = ref(true);
+
+  const statusStore = useStatusStore();
+  const { loadingActive } = statusStore;
 
   const activeSpace = computed(() => spaceList.value.filter((item) => item.id === activeIdx.value));
   const spaceDetail = computed(() => activeSpace.value[0].type);
   const spaceType = computed(() => activeSpace.value[0].space.type);
+
   const activePlan = computed(() => spaceList.value.filter(
     (item) => Object.keys(item.type[0].price).includes(planList.value[activeIdx.value]),
   ));
@@ -33,6 +39,8 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     activeIdx.value = index;
   };
   const getSpaceList = async () => {
+    loadingActive(isFullPage.value);
+
     const res = await axios.get(`${VITE_DATA_URL}/spaces`);
     spaceList.value = res.data;
   };
