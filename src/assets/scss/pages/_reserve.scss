@@ -137,7 +137,7 @@
     input:checked+label {
       margin-bottom: 0;
       border: solid 5px $primary;
-      cursor: default;
+      cursor: pointer;
       transition: all .1s;
     }
   }
@@ -153,6 +153,7 @@
     label {
       width: 100%;
       padding: 16px 32px;
+      cursor: pointer;
       transition: all .1s;
     }
 
@@ -173,7 +174,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      cursor: pointer;
 
       @include tablet-landscape {
         flex-direction: column;

@@ -4,18 +4,17 @@ import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
 import { useStatusStore } from '@/stores/statusStore';
-import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css';
 // import axios from 'axios';
 
 // const { VITE_DATA_URL } = import.meta.env;
 
-const time = ref(new Date());
-const date = ref(new Date());
+const date = ref(null);
 const reserveName = ref('');
 const companyName = ref('');
 const reversePhone = ref('');
 const reverseEmail = ref('');
+const reversePlan = ref('day');
+const time = ref('');
 
 const router = useRouter();
 
@@ -37,6 +36,7 @@ const submitVisit = () => {
     phone: reversePhone.value,
     email: reverseEmail.value,
     space: picked.value,
+    plan: reversePlan.value,
     appointment: date.value,
     time: time.value,
   };
@@ -113,42 +113,82 @@ onMounted(() => {
   </div>
   <div v-if="step === 2">
     <div class="reserve-list form-list">
-      <dl class="row align-items-center">
-        <dt class="form-title col-md-2">
-          <label>
-            目前選擇
-          </label>
-        </dt>
-        <dd class="form-info col-md-10 mb-0">
-          {{ picked }}
-        </dd>
-      </dl>
-      <dl class="row align-items-center">
-        <dt class="form-title col-md-2">
-          <label for="user-name">預約日期<span class="text-danger ms-2">*</span></label>
-        </dt>
-        <dd class="form-info col-md-10 mb-0">
-          <VueDatePicker v-model="date" :enable-time-picker="false" />
-        </dd>
-      </dl>
-      <dl class="row align-items-center" >
-        <dt class="form-title col-md-2">
-          <label for="seat">
-            <span v-if="picked === '共享辦公空間'">座位選擇</span>
-            <span v-else>空間選擇</span>
-            <span class="text-danger ms-2">*</span>
-          </label>
-        </dt>
-        <dd class="form-info col-md-10 mb-0">
-          <select name="seat" id="seat">
-            <option
-              v-for="item in pickedType"
-              :key="item"
-              :value="item.sort"
-            >{{ item.sort }}</option>
-          </select>
-        </dd>
-      </dl>
+      <fieldset>
+        <dl class="row align-items-center">
+          <dt class="form-title col-md-2">
+            <label>
+              目前選擇
+            </label>
+          </dt>
+          <dd class="form-info col-md-10 mb-0">
+            {{ picked }}
+          </dd>
+        </dl>
+        <dl class="row align-items-center" v-if="picked === '共享辦公空間'">
+          <dt class="form-title col-md-2">
+            <label for="user-name">預約方案<span class="text-danger ms-2">*</span></label>
+          </dt>
+          <dd class="form-info col-md-10 mb-0">
+            <select name="reserve-plan" v-model="reversePlan" id="reserve-plan">
+              <option value="day">日租</option>
+              <option value="month">月租</option>
+            </select>
+          </dd>
+        </dl>
+        <dl class="row align-items-center">
+          <dt class="form-title col-md-2">
+            <label for="user-name">預約日期<span class="text-danger ms-2">*</span></label>
+          </dt>
+          <dd class="form-info col-md-10 mb-0">
+            <DatePicker
+              class="date-picker"
+              format="YYYY-MM-DD"
+              type="date"
+              value-type="timestamp"
+              v-model:value="date"
+              placeholder="請選擇日期"
+            />
+          </dd>
+        </dl>
+        <dl class="row align-items-center">
+          <dt class="form-title col-md-2">
+            <label for="user-name">預約時段</label>
+          </dt>
+          <dd class="form-info col-md-10 mb-0">
+            <select name="time" id="time" v-model="time">
+              <template v-if="picked !== '會議室空間'">
+                <option disabled value="">請選擇時段</option>
+                <option value="08:00-18:00">08:00-18:00</option>
+              </template>
+              <template v-else>
+                <option disabled value="">請選擇時段</option>
+                <option value="09:00-11:00">09:00-11:00</option>
+                <option value="11:00-13:00">11:00-13:00</option>
+                <option value="13:00-15:00">13:00-15:00</option>
+                <option value="15:00-17:00">15:00-17:00</option>
+              </template>
+            </select>
+          </dd>
+        </dl>
+        <dl class="row align-items-center" >
+          <dt class="form-title col-md-2">
+            <label for="seat">
+              <span v-if="picked === '共享辦公空間'">座位選擇</span>
+              <span v-else>空間選擇</span>
+              <span class="text-danger ms-2">*</span>
+            </label>
+          </dt>
+          <dd class="form-info col-md-10 mb-0">
+            <select name="seat" id="seat">
+              <option
+                v-for="item in pickedType"
+                :key="item"
+                :value="item.sort"
+              >{{ item.sort }}</option>
+            </select>
+          </dd>
+        </dl>
+      </fieldset>
     </div>
     <div class="btn-block">
       <button type="button" @click="goBackStep" class="button" title="回上一步">回上一步</button>

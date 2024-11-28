@@ -1,9 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css';
 
-const date = ref(new Date());
+const date = ref(null);
 </script>
 <template>
   <div class="visit-reservation form-list">
@@ -58,22 +56,26 @@ const date = ref(new Date());
         <label for="visit-date">參觀日期<span class="text-danger ms-2">*</span></label>
       </dt>
       <dd class="form-info">
-        <div class="">
-          <div class="row">
-            <div class="col-lg-6">
-              <VueDatePicker v-model="date" :enable-time-picker="false" />
-            </div>
-            <div class="col-lg-6">
-              <select type="text" class="visit-time form-select w-100">
-                <option value="9:00">9:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-              </select>
-            </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <DatePicker
+              class="date-picker w-100"
+              :value="date"
+              format="YYYY-MM-DD"
+              type="date"
+              placeholder="請選擇日期"
+            />
+          </div>
+          <div class="col-lg-6 my-2 my-lg-0">
+            <select type="text" class="visit-time form-select w-100">
+              <option value="9:00">9:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+            </select>
           </div>
         </div>
       </dd>

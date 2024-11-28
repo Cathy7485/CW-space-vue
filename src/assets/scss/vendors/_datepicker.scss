@@ -1,0 +1,21 @@
+$namespace: 'xmx'; // 更改默认前缀为'xmx'. 然后设置 <date-picker prefix-class="xmx" />
+
+$default-color: #555;
+$primary-color: #0471b5;
+
+@import 'vue-datepicker-next/scss/index.scss';
+
+.date-picker {
+  width: 50%;
+
+  @include desktop {
+    width: 100%;
+  }
+}
+
+.mx-datepicker {
+  input {
+    font-size: 1.125rem;
+    height: 45px;
+  }
+}

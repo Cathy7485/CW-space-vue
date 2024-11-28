@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import dayjs from 'dayjs';
 
 export const timeformat = {
