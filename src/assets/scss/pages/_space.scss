@@ -17,9 +17,13 @@
   color: #232323;
   border: solid 1px #ddd;
   font-weight: 600;
-  padding: 18px 0;
+  padding: 18px 6px;
   transition: all .3s;
   cursor: pointer;
+
+  @include tablet-landscape {
+    flex: initial;
+  }
 
   &:hover {
     background: rgba(198, 198, 198, 0.1);
@@ -75,6 +79,10 @@
 
   .space-img {
     height: 450px;
+
+    @include tablet-landscape {
+      height: auto;
+    }
 
     img {
       width: 100%;
@@ -153,8 +161,17 @@
   display: flex;
   justify-content: space-between;
 
+  @include desktop {
+    flex-direction: column;
+  }
+
   .type-img {
     width: 60%;
+
+    @include desktop {
+      width: 100%;
+      margin-bottom: 24px;
+    }
 
     img {
       width: 100%;
@@ -162,13 +179,25 @@
   }
 
   .type-btn {
-    width: 30%;
+    width: 35%;
+
+    @include desktop {
+      width: 100%;
+    }
   }
 
   .type-btn-inner {
     position: relative;
     height: 400px;
     overflow: auto hidden;
+
+    @include wide {
+      height: 344px;
+    }
+
+    @include tablet-landscape {
+      height: 240px;
+    }
   }
 
   .btn {
@@ -186,17 +215,6 @@
     &.active {
       background: #000;
       color: #fff;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: -46%;
-        width: 132px;
-        height: 2%;
-        background: #000;
-        pointer-events: none;
-      }
     }
   }
 

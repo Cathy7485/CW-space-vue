@@ -38,9 +38,10 @@ onMounted(() => {
               class="type-swiper type-btn-inner"
               :loop="false"
               :direction="'vertical'"
-              :slidesPerView="3"
+              :slidesPerView="2"
               :spaceBetween="12"
               :mousewheel="true"
+              :breakpoints="{ 768: { slidesPerView: 3 }}"
               :navigation="{
                 prevEl: '.type-btn .custom-prev',
                 nextEl: '.type-btn .custom-next'

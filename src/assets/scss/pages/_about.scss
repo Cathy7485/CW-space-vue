@@ -96,6 +96,7 @@
     position: relative;
     left: auto;
     bottom: auto;
+    padding: 24px 16px;
   }
 
   &-item {
@@ -145,5 +146,9 @@
 
   @include tablet-landscape {
     padding-top: 20px;
+  }
+
+  .img-box {
+    margin-bottom: 24px;
   }
 }
