@@ -1,6 +1,12 @@
 <script setup>
 import { ref } from 'vue';
+import { defineRule } from 'vee-validate';
+import dayjs from 'dayjs';
+import axios from 'axios';
 
+const { VITE_DATA_URL } = import.meta.env;
+
+const isProcessing = ref(false);
 const date = ref(null);
 const visitData = ref({
   name: '',
@@ -8,14 +14,17 @@ const visitData = ref({
   phone: '',
   email: '',
   space: '',
+  appointment: null,
   time: '',
 });
 
-const isProcessing = ref(false);
+defineRule('isPhone', (value) => {
+  const phoneNumber = /^(09)[0-9]{8}$/;
+  return phoneNumber.test(value) || '需要正確的電話號碼';
+});
 
-const submitVisit = () => {
-  isProcessing.value = true;
-
+const submitVisit = async () => {
+  date.value = dayjs(date.value).unix();
   const fromData = {
     name: visitData.value.name,
     company: visitData.value.company,
@@ -27,10 +36,21 @@ const submitVisit = () => {
   };
 
   console.log(fromData);
+  try {
+    await axios.post(`${VITE_DATA_URL}/visit`, fromData);
+    isProcessing.value = true;
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>
 <template>
-  <VForm class="visit-reservation form-list" @submit="submitVisit" v-slot="{ errors }">
+  <VForm
+    v-if="!isProcessing"
+    class="visit-reservation form-list"
+    @submit="submitVisit"
+    v-slot="{ errors }"
+  >
     <span class="fs-6 text-danger text-end mb-2 d-block">請填寫表單，將會有專人聯繫您</span>
     <dl>
       <dt class="form-title">
@@ -78,7 +98,7 @@ const submitVisit = () => {
           name="phone"
           v-model="visitData.phone"
           placeholder="請輸入聯絡電話"
-          rules="required"
+          rules="isPhone|required"
         />
         <ErrorMessage class="invalid-feedback" name="phone"></ErrorMessage>
       </dd>
@@ -169,4 +189,10 @@ const submitVisit = () => {
       >送出</button>
     </div>
   </VForm>
+  <div v-else>
+    <h2 class="text-center">留言成功！</h2>
+    <div class="text-center mt-5">
+      <router-link to="/" class="button primary">回首頁</router-link>
+    </div>
+  </div>
 </template>
