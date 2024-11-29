@@ -27,7 +27,7 @@ const submitContact = () => {
 </script>
 
 <template>
-  <VForm ref="form" class="contact-from form-list" @submit="submitContact" v-slot="{ errors }">
+  <VForm ref="form" class="contact-from form-list"  v-slot="{ errors }">
     <span class="fs-6 text-danger text-end mb-2 d-block">請填寫表單，將會有專人聯繫您</span>
     <dl>
       <dt class="form-label">
@@ -36,7 +36,7 @@ const submitContact = () => {
       <dd class="from-info">
         <VField
           id="name"
-          :class="{ 'is-invalid': errors['name'] }"
+          :class="['form-control', { 'is-invalid': errors['name'] }]"
           name="name"
           type="text"
           v-model="commentData.name"
@@ -53,7 +53,7 @@ const submitContact = () => {
       <dd class="from-info">
         <VField
           id="company"
-          :class="{ 'is-invalid': errors['company'] }"
+          :class="['form-control', { 'is-invalid': errors['company'] }]"
           name="company"
           type="text"
           v-model="commentData.company"
@@ -70,7 +70,7 @@ const submitContact = () => {
       <dd class="from-info">
         <VField
           id="phone"
-          :class="{ 'is-invalid': errors['phone'] }"
+          :class="['form-control', { 'is-invalid': errors['phone'] }]"
           name="phone"
           type="tel"
           v-model="commentData.phone"
@@ -87,7 +87,7 @@ const submitContact = () => {
       <dd class="from-info">
         <VField
           id="email"
-          :class="{ 'is-invalid': errors['email'] }"
+          :class="['form-control', { 'is-invalid': errors['email'] }]"
           name="email"
           type="email"
           v-model="commentData.email"
