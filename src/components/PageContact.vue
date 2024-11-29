@@ -1,68 +1,130 @@
 <script setup>
 import { ref } from 'vue';
 
+const commentData = ref({
+  name: '',
+  company: '',
+  phone: '',
+  email: '',
+  content: '',
+});
+
 const isProcessing = ref(false);
 
+const submitContact = () => {
+  isProcessing.value = true;
+
+  const fromData = {
+    name: commentData.value.name,
+    company: commentData.value.company,
+    phone: commentData.value.phone,
+    email: commentData.value.email,
+    content: commentData.value.content,
+  };
+
+  console.log(fromData);
+};
 </script>
 
 <template>
-  <form ref="form" class="contact-from form-list" @submit="createOrder">
+  <VForm ref="form" class="contact-from form-list" @submit="submitContact" v-slot="{ errors }">
     <span class="fs-6 text-danger text-end mb-2 d-block">請填寫表單，將會有專人聯繫您</span>
+    <dl>
+      <dt class="form-label">
+        <label for="name">聯絡姓名<span class="text-danger ms-2">*</span></label>
+      </dt>
+      <dd class="from-info">
+        <VField
+          id="name"
+          :class="{ 'is-invalid': errors['name'] }"
+          name="name"
+          type="text"
+          v-model="commentData.name"
+          placeholder="請輸入姓名"
+          rules="required"
+        />
+        <ErrorMessage class="invalid-feedback" name="name"></ErrorMessage>
+      </dd>
+    </dl>
+    <dl>
+      <dt class="form-label">
+        <label for="company">公司名稱<span class="text-danger ms-2">*</span></label>
+      </dt>
+      <dd class="from-info">
+        <VField
+          id="company"
+          :class="{ 'is-invalid': errors['company'] }"
+          name="company"
+          type="text"
+          v-model="commentData.company"
+          placeholder="請輸入公司名稱"
+          rules="required"
+        />
+        <ErrorMessage class="invalid-feedback" name="company"></ErrorMessage>
+      </dd>
+    </dl>
+    <dl>
+      <dt class="form-label">
+        <label for="phone">聯絡電話<span class="text-danger ms-2">*</span></label>
+      </dt>
+      <dd class="from-info">
+        <VField
+          id="phone"
+          :class="{ 'is-invalid': errors['phone'] }"
+          name="phone"
+          type="tel"
+          v-model="commentData.phone"
+          placeholder="請輸入電話"
+          rules="required"
+        />
+        <ErrorMessage class="invalid-feedback" name="phone"></ErrorMessage>
+      </dd>
+    </dl>
     <dl>
       <dt class="form-label">
         <label for="email">Email<span class="text-danger ms-2">*</span></label>
       </dt>
       <dd class="from-info">
-        <input id="email" name="email" type="email" placeholder="請輸入信箱" />
-      </dd>
-      <ErrorMessage name="email" class="invalid-feedback" />
-    </dl>
-    <dl>
-      <dt class="form-label">
-        <label for="name">預約姓名<span class="text-danger ms-2">*</span></label>
-      </dt>
-      <dd class="from-info">
-        <input id="name" name="姓名" type="text" placeholder="請輸入姓名" />
-      </dd>
-      <ErrorMessage name="姓名" class="invalid-feedback" />
-    </dl>
-    <dl>
-      <dt class="form-label">
-        <label for="tel">預約電話<span class="text-danger ms-2">*</span></label>
-      </dt>
-      <dd class="from-info">
-        <input id="tel" name="電話" type="tel" placeholder="請輸入電話" />
-      </dd>
-      <ErrorMessage name="電話" class="invalid-feedback" />
-    </dl>
-    <dl>
-      <dt class="form-label">
-        <label for="address">預約空間<span class="text-danger ms-2">*</span></label>
-      </dt>
-      <dd class="from-info">
-        <select id="address" name="空間" class="form-select" as="select">
-          <option disabled value="">請選擇</option>
-          <option value="共享辦公空間">共享辦公空間</option>
-          <option value="獨立辦公空間">獨立辦公空間</option>
-          <option value="會議室空間">會議室空間</option>
-          <option value="其他問題">其他問題</option>
-        </select>
+        <VField
+          id="email"
+          :class="{ 'is-invalid': errors['email'] }"
+          name="email"
+          type="email"
+          v-model="commentData.email"
+          placeholder="請輸入信箱"
+          rules="email|required"
+        />
+        <ErrorMessage class="invalid-feedback" name="email"></ErrorMessage>
       </dd>
     </dl>
     <dl>
       <dt class="form-label">
-        <label for="message">留言<span class="text-danger ms-2">*</span></label>
+        <label for="content">留言<span class="text-danger ms-2">*</span></label>
       </dt>
       <dd class="from-info">
-        <textarea
-          id="message"
+        <VField
+          id="content"
+          :class="{ 'is-invalid': errors['content'] }"
+          name="content"
           cols="30"
-          rows="10">
-        </textarea>
+          rows="10"
+          v-model="commentData.contact"
+          placeholder="請輸入內容"
+          as="textarea"
+          rules="required"
+        ></VField>
+        <ErrorMessage class="invalid-feedback" name="content"></ErrorMessage>
       </dd>
     </dl>
     <div class="btn-block">
-      <button type="button" class="button primary" title="送出">送出</button>
+      <button
+        type="button"
+        class="button primary"
+        title="送出"
+        @click="submitContact"
+      >
+        送出
+      </button>
     </div>
-  </form>
+  </VForm>
 </template>

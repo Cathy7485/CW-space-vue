@@ -28,6 +28,10 @@
     &.dp__pointer {
       padding: 8px 30px 8px 35px;
     }
+
+    &.is-invalid {
+      border-color: $danger;
+    }
   }
 
   select {
@@ -41,5 +45,9 @@
     width: 100%;
     border: solid 2px #E7E7E7;
     padding: 8px 16px;
+
+    &.is-invalid {
+      border-color: $danger;
+    }
   }
 }
