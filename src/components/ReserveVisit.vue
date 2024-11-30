@@ -49,7 +49,7 @@ const submitVisit = async () => {
     v-if="!isProcessing"
     class="visit-reservation form-list"
     @submit="submitVisit"
-    v-slot="{ errors }"
+    v-slot="{ errors, meta }"
   >
     <span class="fs-6 text-danger text-end mb-2 d-block">請填寫表單，將會有專人聯繫您</span>
     <dl>
@@ -186,11 +186,12 @@ const submitVisit = async () => {
         class="button primary"
         title="送出"
         @click="submitVisit"
+        :disabled="!meta.valid"
       >送出</button>
     </div>
   </VForm>
   <div v-else>
-    <h2 class="text-center">留言成功！</h2>
+    <h2 class="text-center">預約成功！</h2>
     <div class="text-center mt-5">
       <router-link to="/" class="button primary">回首頁</router-link>
     </div>

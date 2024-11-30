@@ -1,6 +1,11 @@
 <script setup>
 import { ref } from 'vue';
+import { defineRule } from 'vee-validate';
+import axios from 'axios';
 
+const { VITE_DATA_URL } = import.meta.env;
+
+const isProcessing = ref(false);
 const commentData = ref({
   name: '',
   company: '',
@@ -9,9 +14,12 @@ const commentData = ref({
   content: '',
 });
 
-const isProcessing = ref(false);
+defineRule('isPhone', (value) => {
+  const phoneNumber = /^(09)[0-9]{8}$/;
+  return phoneNumber.test(value) || '需要正確的電話號碼';
+});
 
-const submitContact = () => {
+const submitContact = async () => {
   isProcessing.value = true;
 
   const fromData = {
@@ -23,11 +31,22 @@ const submitContact = () => {
   };
 
   console.log(fromData);
+  try {
+    await axios.post(`${VITE_DATA_URL}/comments`, fromData);
+    isProcessing.value = true;
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>
 
 <template>
-  <VForm ref="form" class="contact-from form-list"  v-slot="{ errors }">
+  <VForm
+    v-if="!isProcessing"
+    ref="form"
+    class="contact-from form-list"
+    v-slot="{ errors, meta }"
+  >
     <span class="fs-6 text-danger text-end mb-2 d-block">請填寫表單，將會有專人聯繫您</span>
     <dl>
       <dt class="form-label">
@@ -75,7 +94,7 @@ const submitContact = () => {
           type="tel"
           v-model="commentData.phone"
           placeholder="請輸入電話"
-          rules="required"
+          rules="isPhone|required"
         />
         <ErrorMessage class="invalid-feedback" name="phone"></ErrorMessage>
       </dd>
@@ -122,9 +141,14 @@ const submitContact = () => {
         class="button primary"
         title="送出"
         @click="submitContact"
-      >
-        送出
-      </button>
+        :disabled="!meta.valid"
+      >送出</button>
     </div>
   </VForm>
+  <div v-else>
+    <h2 class="text-center">留言成功！</h2>
+    <div class="text-center mt-5">
+      <router-link to="/" class="button primary">回首頁</router-link>
+    </div>
+  </div>
 </template>

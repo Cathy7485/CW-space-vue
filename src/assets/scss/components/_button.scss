@@ -7,6 +7,10 @@
   font-weight: 600;
   transition: all .5s;
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   &:hover {
     background: #000;
     color: #fff;
