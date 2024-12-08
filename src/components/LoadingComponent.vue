@@ -2,7 +2,6 @@
   <loading-component
     :active="isLoading"
     :color="'#000'"
-    :z-index=999
   />
 </template>
 

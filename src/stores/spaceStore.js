@@ -10,7 +10,6 @@ export const useSpaceStore = defineStore('spaceStore', () => {
   const activeIdx = ref(0);
   const planList = ref(['day', 'month', 'year']);
   const spaceId = ref(1);
-  const isFullPage = ref(true);
 
   const statusStore = useStatusStore();
   const { loadingActive } = statusStore;
@@ -39,10 +38,12 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     activeIdx.value = index;
   };
   const getSpaceList = async () => {
-    loadingActive(isFullPage.value);
+    loadingActive(true);
 
     const res = await axios.get(`${VITE_DATA_URL}/spaces`);
     spaceList.value = res.data;
+
+    loadingActive(false);
   };
 
   return {
