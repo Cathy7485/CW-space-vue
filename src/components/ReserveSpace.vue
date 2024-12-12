@@ -11,6 +11,7 @@ const { VITE_DATA_URL } = import.meta.env;
 
 const isProcessing = ref(false);
 const date = ref(null);
+const random = ref(0);
 const reserveData = ref({
   appointment: null,
   company: '',
@@ -49,8 +50,11 @@ const goBack = () => {
   router.go(-1);
 };
 
+const randomFn = (max, min) => Math.floor(Math.random() * (max - min + 1) + min);
+
 const submitReveres = async () => {
   date.value = dayjs(date.value).unix();
+  random.value = randomFn(12, 0);
   const fromData = {
     appointment: date.value,
     company: reserveData.value.company,
@@ -125,7 +129,7 @@ onMounted(() => {
     <button type="button" @click="goNextStep" class="button primary" title="下一步">下一步</button>
   </div>
   </div>
-  <div v-if="step === 2">
+  <template v-if="step === 2">
     <div class="reserve-list form-list">
       <fieldset>
         <dl class="row align-items-center">
@@ -217,7 +221,7 @@ onMounted(() => {
       <button type="button" @click="goBackStep" class="button" title="回上一步">回上一步</button>
       <button type="button" @click="goNextStep" class="button primary" title="下一步">下一步</button>
     </div>
-  </div>
+  </template>
   <div>
     <template v-if="step === 3">
       <VForm
@@ -311,18 +315,18 @@ onMounted(() => {
         </div>
       </VForm>
     </template>
-    <div v-if="step === 4">
+    <template v-if="step === 4">
       <div class="reserve-list service-finish">
         <h2>預約成功</h2>
-        <p>訂單編號 <span class="text-danger fw-bold">1010-5965-4435</span></p>
+        <p>訂單編號 <span class="text-danger fw-bold">CW{{ date }}-{{ random }}</span></p>
         <p>請確認您的電子郵件，牢記您的訂單編號。</p>
         <p>請您於<span class="text-danger fw-bold">7個工作天</span>內匯款，收到款項後，完成預約</p>
         <p>匯款資訊  013國泰世華 1234-5678-4321-0018</p>
-        <p>匯款後，請您來電告知帳戶後末四碼，及訂單資料</p>
+        <p>匯款後，請您來電告知帳戶後末四碼，以及訂單資料，才算完成預約手續。</p>
       </div>
       <div class="btn-block">
         <router-link to="/" class="button primary" title="回首頁">回首頁</router-link>
       </div>
-    </div>
+    </template>
   </div>
 </template>
