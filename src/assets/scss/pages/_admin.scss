@@ -1,4 +1,17 @@
-.admin-links {
+.admin-logo {
+  padding: 16px;
+  background: #151515;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.admin-header {
+  padding: 8px;
+  margin-bottom: 48px;
+  background: rgba(0, 0, 0, 0.4);
+
   a {
     color: #fff;
     margin-right: 16px;
@@ -6,5 +19,12 @@
     &:last-child {
       margin-right: 0;
     }
+  }
+
+  .router-link-active {
+    border-bottom: solid 5px $primary;
+    padding: 8px 12px 6px;
+    font-weight: 600;
+    transition: all .3s;
   }
 }

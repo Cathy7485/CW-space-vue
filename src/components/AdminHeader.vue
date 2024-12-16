@@ -11,11 +11,13 @@ const logout = () => {
 </script>
 
 <template>
-  <div class="p-4 bg-secondary mb-5">
+  <div class="admin-logo">後台管理</div>
+  <div class="admin-header">
     <div class="container d-flex justify-content-between align-items-center">
-      <div class="admin-links">
-        <router-link to="/products">產品列表</router-link>
-        <router-link to="/article">文章列表</router-link>
+      <div class="">
+        <router-link to="/visitList">預約參觀訂單</router-link>
+        <router-link to="/reserveList">預約空間訂單</router-link>
+        <router-link to="/contactList">線上留言管理</router-link>
       </div>
       <a
         href="#"

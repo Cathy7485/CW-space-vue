@@ -64,14 +64,19 @@ const routes = [
     component: () => import('../views/DashboardView.vue'),
     children: [
       {
-        path: '/products',
-        name: 'products',
-        component: () => import('../views/backend/ProductsView.vue'),
+        path: '/reserveList',
+        name: 'reserveList',
+        component: () => import('../views/backend/ReserveList.vue'),
       },
       {
-        path: '/article',
-        name: 'article',
-        component: () => import('../views/backend/ArticleView.vue'),
+        path: '/visitList',
+        name: 'visitList',
+        component: () => import('../views/backend/VisitList.vue'),
+      },
+      {
+        path: '/contactList',
+        name: 'contactList',
+        component: () => import('../views/backend/ContactList.vue'),
       },
     ],
   },

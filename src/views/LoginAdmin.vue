@@ -22,7 +22,6 @@ const signin = async () => {
         const token = res.data.accessToken;
         // set cookie expirations to 1 hour
         document.cookie = `spaceToken=${token};max-age=3600;`;
-        console.log(document.cookie);
         router.push('/dashboard');
       });
   } catch (error) {

@@ -11,7 +11,7 @@ onMounted(() => {
   const token = document.cookie.replace(/(?:(?:^|.*;\s*)spaceToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-  console.log(token);
+  // console.log(token);
   // if (token) {
   //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   // } else {
