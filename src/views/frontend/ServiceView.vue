@@ -16,6 +16,7 @@ const planText = ref(['日租方案', '月租方案', '年租方案']);
 
 onMounted(() => {
   getSpaceList();
+  activeIdx.value = 0;
 });
 </script>
 
