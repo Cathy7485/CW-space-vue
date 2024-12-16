@@ -38,8 +38,13 @@
   width: 154px;
   height: 174px;
   background: url(@/assets/images/logo-md.png) no-repeat 0 0/contain !important;
-  transition: all .1s;
+  transition: all .3s;
   text-indent: -9999px;
+
+  @include wide {
+    width: 116px;
+    height: 130px;
+  }
 
   @include desktop {
     position: relative;
