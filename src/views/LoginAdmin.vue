@@ -1,30 +1,40 @@
 <script setup>
+import axios from 'axios';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-const { VITE_URL } = import.meta.env;
+const { VITE_DATA_URL } = import.meta.env;
+
+const router = useRouter();
 
 const user = ref({
-  username: '',
+  email: '',
   password: '',
 });
 
-const signIn = () => {
-  const api = `${VITE_URL}admin/signin`;
-  this.$http.post(api, this.user)
-    .then((res) => {
-      if (res.data.success) {
-        const { token, expired } = res.data;
-        document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
-        this.$router.push('/dashboard');
-      }
-    });
+const signin = async () => {
+  const api = `${VITE_DATA_URL}/login`;
+  try {
+    await axios
+      .post(api, user.value)
+      .then((res) => {
+        console.log(res);
+        const token = res.data.accessToken;
+        // set cookie expirations to 1 hour
+        document.cookie = `spaceToken=${token};max-age=3600;`;
+        console.log(document.cookie);
+        router.push('/dashboard');
+      });
+  } catch (error) {
+    console.error('帳號或密碼錯誤');
+  }
 };
 </script>
 
 <template>
   <div class="block container" style="margin-top: 200px;">
-    <div class="h2 mb-3">管理者登入</div>
-    <form id="form" class="form-signin" @submit.prevent="signIn">
+    <div class="h2 mb-3">登入</div>
+    <div class="form-signin w-50 m-auto">
       <div class="form-floating mb-3">
         <input
           type="email"
@@ -32,7 +42,7 @@ const signIn = () => {
           id="inputUsername"
           placeholder="name@example.com"
           required autofocus
-          v-model="user.username" />
+          v-model="user.email" />
         <label for="inputUsername">Email address</label>
       </div>
       <div class="form-floating">
@@ -45,9 +55,13 @@ const signIn = () => {
           v-model="user.password" />
         <label for="inputPassword">Password</label>
       </div>
-      <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
+      <button
+        type="button"
+        class="btn btn-lg btn-primary w-100 mt-3"
+        @click="signin"
+      >
         登入
       </button>
-    </form>
+    </div>
   </div>
 </template>

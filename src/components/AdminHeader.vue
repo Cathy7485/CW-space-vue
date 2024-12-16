@@ -1,14 +1,12 @@
 <script setup>
-const { VITE_URL } = import.meta.env;
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const logout = () => {
-  const api = `${VITE_URL}logout`;
-  this.$http.post(api, this.user)
-    .then((res) => {
-      if (res.data.success) {
-        this.$router.push('/login');
-      }
-    });
+  document.cookie = 'spaceToken=;max-age=0;';
+  console.log('已登出');
+  router.push('/login');
 };
 </script>
 

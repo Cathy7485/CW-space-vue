@@ -1,20 +1,23 @@
 <script setup>
 import { onMounted } from 'vue';
+// import { useRouter } from 'vue-router';
 import adminHeader from '@/components/AdminHeader.vue';
+import axios from 'axios';
 
-const { VITE_URL } = import.meta.env;
+// const router = useRouter();
+// const { VITE_URL } = import.meta.env;
 
 onMounted(() => {
-  const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
-  this.$http.defaults.headers.common.Authorization = token;
-  const api = `${VITE_URL}api/user/check`;
-  this.$http
-    .post(api, this.user)
-    .then((res) => {
-      if (!res.data.success) {
-        this.$router.push('/login');
-      }
-    });
+  const token = document.cookie.replace(/(?:(?:^|.*;\s*)spaceToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+  console.log(token);
+  // if (token) {
+  //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  // } else {
+  //   router.push('login');
+  //   console.log('登入失敗，請重新登入');
+  // }
 });
 </script>
 
