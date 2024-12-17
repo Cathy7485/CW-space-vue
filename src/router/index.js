@@ -74,9 +74,14 @@ const routes = [
         component: () => import('../views/backend/VisitList.vue'),
       },
       {
-        path: '/contactList',
-        name: 'contactList',
-        component: () => import('../views/backend/ContactList.vue'),
+        path: '/commentList',
+        name: 'commentList',
+        component: () => import('../views/backend/comment/Index.vue'),
+      },
+      {
+        path: '/commentList/:id',
+        name: 'commentItem',
+        component: () => import('../views/backend/comment/[id].vue'),
       },
     ],
   },

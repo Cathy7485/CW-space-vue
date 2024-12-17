@@ -17,7 +17,7 @@ const logout = () => {
       <div class="">
         <router-link to="/visitList">預約參觀訂單</router-link>
         <router-link to="/reserveList">預約空間訂單</router-link>
-        <router-link to="/contactList">線上留言管理</router-link>
+        <router-link to="/commentList">線上留言管理</router-link>
       </div>
       <a
         href="#"

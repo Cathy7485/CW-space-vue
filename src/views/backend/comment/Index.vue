@@ -1,7 +1,10 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 
+const router = useRouter();
 const { VITE_DATA_URL } = import.meta.env;
 const commentData = ref([]);
 
@@ -9,6 +12,10 @@ const getComments = async () => {
   const api = `${VITE_DATA_URL}/comments`;
   const res = await axios.get(api);
   commentData.value = res.data;
+};
+
+const commentDetail = (id) => {
+  router.push(`/commentList/${id}`);
 };
 
 onMounted(() => {
@@ -41,6 +48,7 @@ onMounted(() => {
             <button
               type="button"
               class="btn btn-sm btn-outline-secondary"
+              @click="commentDetail(item.id)"
             >
               內容
             </button>
