@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   border-bottom: 1px solid #000;
   margin: 0;
   margin-bottom: 74px;
@@ -12,7 +12,9 @@
 
 .space-tab-item {
   flex: 1;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   text-align: center;
   color: #232323;
   border: solid 1px #ddd;
@@ -20,10 +22,6 @@
   padding: 18px 6px;
   transition: all .3s;
   cursor: pointer;
-
-  @include tablet-landscape {
-    flex: initial;
-  }
 
   &:hover {
     background: rgba(198, 198, 198, 0.1);
