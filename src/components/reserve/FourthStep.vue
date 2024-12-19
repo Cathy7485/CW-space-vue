@@ -5,10 +5,11 @@ import { useReserveStore } from '@/stores/reserveStore';
 
 const router = useRouter();
 const reserveStore = useReserveStore();
-const { unixDate, random } = storeToRefs(reserveStore);
+const { unixDate, random, step } = storeToRefs(reserveStore);
 
 setTimeout(() => {
-  router.push('/');
+  step.value = 0;
+  router.go(0);
 }, 5000);
 </script>
 
@@ -21,7 +22,7 @@ setTimeout(() => {
     <p>匯款資訊  013國泰世華 1234-5678-4321-0018</p>
     <p>匯款後，請您來電告知帳戶後末四碼，以及訂單資料，才算完成預約手續。</p>
   </div>
-  <h6 class="mt-4 text-danger fw-bold text-center">五秒後，將自動跳轉回首頁</h6>
+  <h6 class="mt-4 text-danger fw-bold text-center">五秒後，將自動跳轉回預約頁</h6>
   <div class="btn-block">
     <router-link to="/" class="button primary" title="回首頁">回首頁</router-link>
   </div>
