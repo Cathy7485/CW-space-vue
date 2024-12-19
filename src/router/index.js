@@ -66,12 +66,22 @@ const routes = [
       {
         path: '/reserveList',
         name: 'reserveList',
-        component: () => import('../views/backend/ReserveList.vue'),
+        component: () => import('../views/backend/reserve/Index.vue'),
+      },
+      {
+        path: '/reserveList/:id',
+        name: 'reserveItem',
+        component: () => import('../views/backend/reserve/[id].vue'),
       },
       {
         path: '/visitList',
         name: 'visitList',
-        component: () => import('../views/backend/VisitList.vue'),
+        component: () => import('../views/backend/visit/Index.vue'),
+      },
+      {
+        path: '/visitList/:id',
+        name: 'visitItem',
+        component: () => import('../views/backend/visit/[id].vue'),
       },
       {
         path: '/commentList',
