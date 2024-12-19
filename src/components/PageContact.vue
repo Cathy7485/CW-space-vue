@@ -22,7 +22,7 @@ defineRule('isPhone', (value) => {
 const submitContact = async () => {
   isProcessing.value = true;
 
-  const fromData = {
+  const formData = {
     name: commentData.value.name,
     company: commentData.value.company,
     phone: commentData.value.phone,
@@ -30,9 +30,9 @@ const submitContact = async () => {
     content: commentData.value.content,
   };
 
-  console.log(fromData);
+  console.log(formData);
   try {
-    await axios.post(`${VITE_DATA_URL}/comments`, fromData);
+    await axios.post(`${VITE_DATA_URL}/comments`, formData);
     isProcessing.value = true;
   } catch (error) {
     console.log(error);
@@ -44,7 +44,7 @@ const submitContact = async () => {
   <VForm
     v-if="!isProcessing"
     ref="form"
-    class="contact-from form-list"
+    class="contact-form form-list"
     v-slot="{ errors, meta }"
   >
     <span class="fs-6 text-danger text-end mb-2 d-block">請填寫表單，將會有專人聯繫您</span>
@@ -52,7 +52,7 @@ const submitContact = async () => {
       <dt class="form-label">
         <label for="name">聯絡姓名<span class="text-danger ms-2">*</span></label>
       </dt>
-      <dd class="from-info">
+      <dd class="form-info">
         <VField
           id="name"
           :class="['form-control', { 'is-invalid': errors['name'] }]"
@@ -69,7 +69,7 @@ const submitContact = async () => {
       <dt class="form-label">
         <label for="company">公司名稱<span class="text-danger ms-2">*</span></label>
       </dt>
-      <dd class="from-info">
+      <dd class="form-info">
         <VField
           id="company"
           :class="['form-control', { 'is-invalid': errors['company'] }]"
@@ -86,7 +86,7 @@ const submitContact = async () => {
       <dt class="form-label">
         <label for="phone">聯絡電話<span class="text-danger ms-2">*</span></label>
       </dt>
-      <dd class="from-info">
+      <dd class="form-info">
         <VField
           id="phone"
           :class="['form-control', { 'is-invalid': errors['phone'] }]"
@@ -103,7 +103,7 @@ const submitContact = async () => {
       <dt class="form-label">
         <label for="email">Email<span class="text-danger ms-2">*</span></label>
       </dt>
-      <dd class="from-info">
+      <dd class="form-info">
         <VField
           id="email"
           :class="['form-control', { 'is-invalid': errors['email'] }]"
@@ -120,7 +120,7 @@ const submitContact = async () => {
       <dt class="form-label">
         <label for="content">留言<span class="text-danger ms-2">*</span></label>
       </dt>
-      <dd class="from-info">
+      <dd class="form-info">
         <VField
           id="content"
           :class="{ 'is-invalid': errors['content'] }"

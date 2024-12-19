@@ -25,7 +25,7 @@ defineRule('isPhone', (value) => {
 
 const submitVisit = async () => {
   date.value = dayjs(date.value).unix();
-  const fromData = {
+  const req = {
     name: visitData.value.name,
     company: visitData.value.company,
     phone: visitData.value.phone,
@@ -35,9 +35,9 @@ const submitVisit = async () => {
     time: visitData.value.time,
   };
 
-  console.log(fromData);
+  console.log(req);
   try {
-    await axios.post(`${VITE_DATA_URL}/visit`, fromData);
+    await axios.post(`${VITE_DATA_URL}/visit`, req);
     isProcessing.value = true;
   } catch (error) {
     console.log(error);
@@ -154,6 +154,7 @@ const submitVisit = async () => {
               format="YYYY-MM-DD"
               type="date"
               placeholder="請選擇日期"
+              :disabled-week-days="[6, 0]"
             />
           </div>
           <div class="col-lg-6 my-2 my-lg-0">
