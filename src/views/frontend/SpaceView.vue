@@ -49,8 +49,8 @@ onMounted(() => {
               to="reserve"
               class="button primary me-3">立即預約</router-link>
               <router-link
-              to="reserve"
-              class="button">了解方案</router-link>
+              to="service"
+              class="button">方案價格</router-link>
           </div>
         </div>
         <div class="col-lg-7 gy-5 gy-lg-0 position-relative">

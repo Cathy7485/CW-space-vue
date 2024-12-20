@@ -19,7 +19,7 @@ const addFixed = () => {
 const toggleNav = () => { isShow.value = !isShow.value; };
 window.addEventListener('scroll', addFixed);
 
-watch(() => router.currentRoute.value.name, () => toggleNav());
+watch(() => router.currentRoute.value.name, () => { isShow.value = false; });
 </script>
 
 <template>

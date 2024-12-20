@@ -2,7 +2,6 @@
 import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
-// import seatImg from '@/assets/images/seat-bg.svg';
 
 const defaultIdx = ref(0);
 const store = useSpaceStore();
