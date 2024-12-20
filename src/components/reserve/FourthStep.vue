@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useReserveStore } from '@/stores/reserveStore';
@@ -6,11 +7,16 @@ import { useReserveStore } from '@/stores/reserveStore';
 const router = useRouter();
 const reserveStore = useReserveStore();
 const { unixDate, random, step } = storeToRefs(reserveStore);
+const { scrollToTop } = reserveStore;
 
 setTimeout(() => {
   step.value = 0;
   router.go(0);
 }, 5000);
+
+onMounted(() => {
+  scrollToTop();
+});
 </script>
 
 <template>

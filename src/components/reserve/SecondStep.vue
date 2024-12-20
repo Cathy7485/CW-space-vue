@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
 import { useReserveStore } from '@/stores/reserveStore';
@@ -6,9 +7,14 @@ import { useReserveStore } from '@/stores/reserveStore';
 const reserveStore = useReserveStore();
 const { picked, reserveData, isFilledIn } = storeToRefs(reserveStore);
 const { backStep, checkedForm } = reserveStore;
+const { scrollToTop } = reserveStore;
 
 const spaceStore = useSpaceStore();
 const { pickedType } = storeToRefs(spaceStore);
+
+onMounted(() => {
+  scrollToTop();
+});
 </script>
 
 <template>

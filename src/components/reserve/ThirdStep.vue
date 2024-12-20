@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from 'vue';
 import { defineRule } from 'vee-validate';
 import { useReserveStore } from '@/stores/reserveStore';
 import { storeToRefs } from 'pinia';
@@ -6,12 +7,16 @@ import { storeToRefs } from 'pinia';
 const reserveStore = useReserveStore();
 const { reserveData } = storeToRefs(reserveStore);
 const { backStep, submitReveres } = reserveStore;
+const { scrollToTop } = reserveStore;
 
 defineRule('isPhone', (value) => {
   const phoneNumber = /^(09)[0-9]{8}$/;
   return phoneNumber.test(value) || '需要正確的電話號碼';
 });
 
+onMounted(() => {
+  scrollToTop();
+});
 </script>
 
 <template>

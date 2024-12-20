@@ -105,6 +105,14 @@ export const useReserveStore = defineStore('ReserveStore', () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return {
     isProcessing,
     step,
@@ -121,6 +129,7 @@ export const useReserveStore = defineStore('ReserveStore', () => {
     goBackPage,
     randomFn,
     submitReveres,
+    scrollToTop,
   };
 });
 
