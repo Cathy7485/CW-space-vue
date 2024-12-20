@@ -3,15 +3,22 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
+import { storeToRefs } from 'pinia';
+import { useStatusStore } from '@/stores/statusStore';
+
+const status = useStatusStore();
+const { isLoading } = storeToRefs(status);
 
 const router = useRouter();
 const { VITE_DATA_URL } = import.meta.env;
 const commentData = ref([]);
 
 const getComments = async () => {
+  isLoading.value = true;
   const api = `${VITE_DATA_URL}/comments`;
   const res = await axios.get(api);
   commentData.value = res.data;
+  isLoading.value = false;
 };
 
 const commentDetail = (id) => {

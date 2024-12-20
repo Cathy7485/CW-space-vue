@@ -1,15 +1,28 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import axios from 'axios';
+import { storeToRefs } from 'pinia';
+import { useStatusStore } from '@/stores/statusStore';
 
+const status = useStatusStore();
+const { isLoading } = storeToRefs(status);
+
+const router = useRouter();
 const { VITE_DATA_URL } = import.meta.env;
 const visitData = ref([]);
 
 const getVisit = async () => {
+  isLoading.value = true;
   const api = `${VITE_DATA_URL}/visit`;
   const res = await axios.get(api);
   visitData.value = res.data;
+  isLoading.value = false;
+};
+
+const visitDetail = (id) => {
+  router.push(`/visitList/${id}`);
 };
 
 onMounted(() => {
@@ -37,7 +50,9 @@ onMounted(() => {
       </thead>
       <tbody>
         <tr v-for="item in visitData" :key="item.id">
-          <td>{{ item.appointment }}</td>
+          <td>
+            <span v-timeformat="item.appointment"></span>
+          </td>
           <td>{{ item.company }}</td>
           <td>{{ item.phone }}</td>
           <td>{{ item.email }}</td>
@@ -47,6 +62,7 @@ onMounted(() => {
             <button
               type="button"
               class="btn btn-sm btn-outline-secondary"
+              @click="visitDetail(item.id)"
             >
               內容
             </button>
