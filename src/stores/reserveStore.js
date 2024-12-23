@@ -107,7 +107,7 @@ export const useReserveStore = defineStore('ReserveStore', () => {
 
   const scrollToTop = () => {
     window.scrollTo({
-      top: 0,
+      top: 480,
       left: 0,
       behavior: 'smooth',
     });
