@@ -21,23 +21,23 @@ export const useSpaceStore = defineStore('spaceStore', () => {
   const spaceType = computed(() => (activeSpace.value && activeSpace.value.space
     ? activeSpace.value.space.type : null));
 
-  const activePlan = computed(() => spaceList.value.filter(
-    (item) => Object.keys(item.type[0].price).includes(planList.value[activeIdx.value]),
-  ));
-  const spacePlan = computed(() => spaceList.value.filter(
-    (item) => !Object.keys(item.type[0].price).includes('free'),
-  ));
+  const activePlan = computed(() => spaceList.value.filter((item) => {
+    const planKey = planList.value[activeIdx.value];
+    return item.type[0] && item.type[0].price && Object.keys(item.type[0].price).includes(planKey);
+  }));
 
-  const pickedSpace = computed(() => spacePlan.value.filter((item) => item.id === spaceId.value));
-  const pickedType = computed(() => (pickedSpace.value[0].type));
+  const spacePlan = computed(() => spaceList.value.filter((item) => item.type[0] && item.type[0].price && !Object.keys(item.type[0].price).includes('free')));
+
+  const pickedSpace = computed(() => spacePlan.value.find(
+    (item) => item.id === spaceId.value,
+  ) || null);
+
+  const pickedType = computed(() => (pickedSpace.value ? pickedSpace.value.type : null));
 
   const changeSpaceId = (id) => {
     spaceId.value = id;
   };
   const changeIdx = (index) => {
-    activeIdx.value = index;
-  };
-  const changePlan = (index) => {
     activeIdx.value = index;
   };
   const getSpaceList = async () => {
@@ -57,7 +57,6 @@ export const useSpaceStore = defineStore('spaceStore', () => {
   return {
     getSpaceList,
     changeIdx,
-    changePlan,
     changeSpaceId,
     spaceList,
     activeIdx,

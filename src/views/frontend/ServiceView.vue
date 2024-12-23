@@ -6,7 +6,7 @@ import bannerUrl from '@/assets/images/plan-banner.jpg';
 import PageBanner from '@/components/PageBanner.vue';
 
 const store = useSpaceStore();
-const { getSpaceList, changePlan } = store;
+const { getSpaceList, changeIdx } = store;
 const {
   activePlan, activeIdx,
 } = storeToRefs(store);
@@ -31,7 +31,7 @@ onMounted(() => {
         :key="item"
         class="space-tab-item"
         :class="{'active': index === activeIdx }"
-        @click="changePlan(index)">{{ item }}</div>
+        @click="changeIdx(index)">{{ item }}</div>
     </div>
     <template v-if="activePlan.length > 0">
       <div class="service-detail" v-for="item in activePlan" :key="item.id">
