@@ -14,9 +14,12 @@ export const useSpaceStore = defineStore('spaceStore', () => {
   const statusStore = useStatusStore();
   const { loadingActive } = statusStore;
 
-  const activeSpace = computed(() => spaceList.value.filter((item) => item.id === activeIdx.value));
-  const spaceDetail = computed(() => activeSpace.value[0].type);
-  const spaceType = computed(() => activeSpace.value[0].space.type);
+  const activeSpace = computed(() => spaceList.value.find(
+    (item) => item.id === activeIdx.value + 1,
+  ) || null);
+  const spaceDetail = computed(() => (activeSpace.value ? activeSpace.value.type : null));
+  const spaceType = computed(() => (activeSpace.value && activeSpace.value.space
+    ? activeSpace.value.space.type : null));
 
   const activePlan = computed(() => spaceList.value.filter(
     (item) => Object.keys(item.type[0].price).includes(planList.value[activeIdx.value]),
@@ -38,12 +41,17 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     activeIdx.value = index;
   };
   const getSpaceList = async () => {
-    loadingActive(true);
+    try {
+      loadingActive(true);
 
-    const res = await axios.get(`${VITE_DATA_URL}/spaces`);
-    spaceList.value = res.data;
-
-    loadingActive(false);
+      const res = await axios.get(`${VITE_DATA_URL}/spaces`);
+      spaceList.value = res.data;
+    } catch (error) {
+      console.error('Error loading space list:', error);
+      spaceList.value = [];
+    } finally {
+      loadingActive(false);
+    }
   };
 
   return {
