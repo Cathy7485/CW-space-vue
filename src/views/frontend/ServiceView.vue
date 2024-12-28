@@ -6,9 +6,9 @@ import bannerUrl from '@/assets/images/plan-banner.jpg';
 import PageBanner from '@/components/PageBanner.vue';
 
 const store = useSpaceStore();
-const { getSpaceList, changeIdx } = store;
+const { getSpaceList, changeIdx, getPlanList } = store;
 const {
-  activePlan, activeIdx,
+  activePlan, activeIdx, planList,
 } = storeToRefs(store);
 
 const pageTitle = ref('方案介紹');
@@ -40,20 +40,12 @@ onMounted(() => {
         </div>
         <div class="right">
           <div class="name">{{ item.name }}</div>
-          <div v-if="item.type[0].capacity === 1">
-            <template v-if="activeIdx === 0">
-              NT$ {{ item.type[0].price['day'] }} 元/日
-            </template>
-            <template v-if="activeIdx === 1">
-              NT$ {{ item.type[0].price['month'] }} 元/月
-            </template>
-          </div>
-          <div v-else>
-            <template v-if="item.type[0].price['month']">
-              <div class='mb-2'>NT$ {{ item.type[0].price['month'] }} 元/月 (A1、B1 辦公室)</div>
-              <div>NT$ {{ item.type[2].price['month']  }} 元/月 (C1 辦公室)</div>
-            </template>
-          </div>
+            <div v-for="plan in getPlanList(item.name)" :key="plan">
+              NT$ {{ plan.price[planList[activeIdx]] }} /
+              <span v-if="planList[activeIdx] === 'day'">日</span>
+              <span v-else-if="planList[activeIdx] === 'month'">月</span>
+              <span v-if="item.name === '獨立辦公空間'"> ( {{ plan.sort }} 辦公室 )</span>
+            </div>
           <div class="text-bg">{{ item.enName }}</div>
         </div>
       </div>

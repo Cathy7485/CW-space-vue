@@ -26,6 +26,35 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     return item.type[0] && item.type[0].price && Object.keys(item.type[0].price).includes(planKey);
   }));
 
+  // 共享辦公空間的過濾結果
+  const sharedOfficePrices = computed(() => {
+    const sharedOffice = activePlan.value.find(
+      (item) => item.name === '共享辦公空間',
+    );
+
+    if (!sharedOffice) return []; // 如果找不到資料，返回空陣列
+
+    // 過濾共享辦公空間的唯一 price 資料
+    const uniquePrices = new Map();
+    sharedOffice.type.forEach((type) => {
+      const priceKey = JSON.stringify(type.price);
+      if (!uniquePrices.has(priceKey)) {
+        uniquePrices.set(priceKey, type); // 只保留第一筆
+      }
+    });
+
+    return Array.from(uniquePrices.values());
+  });
+
+  // 獨立辦公空間的完整結果
+  const privateOfficePrices = computed(() => {
+    const privateOffice = activePlan.value.find(
+      (item) => item.name === '獨立辦公空間',
+    );
+
+    return privateOffice ? privateOffice.type : [];
+  });
+
   const spacePlan = computed(() => spaceList.value.filter((item) => item.type[0] && item.type[0].price && !Object.keys(item.type[0].price).includes('free')));
 
   const pickedSpace = computed(() => spacePlan.value.find(
@@ -33,6 +62,8 @@ export const useSpaceStore = defineStore('spaceStore', () => {
   ) || null);
 
   const pickedType = computed(() => (pickedSpace.value ? pickedSpace.value.type : null));
+
+  const getPlanList = (activeName) => (activeName === '共享辦公空間' ? sharedOfficePrices.value : privateOfficePrices.value);
 
   const changeSpaceId = (id) => {
     spaceId.value = id;
@@ -56,6 +87,7 @@ export const useSpaceStore = defineStore('spaceStore', () => {
 
   return {
     getSpaceList,
+    getPlanList,
     changeIdx,
     changeSpaceId,
     spaceList,
@@ -65,6 +97,9 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     spaceType,
     planList,
     activePlan,
+    // planTypePrice,
+    sharedOfficePrices,
+    privateOfficePrices,
     spacePlan,
     spaceId,
     pickedSpace,
