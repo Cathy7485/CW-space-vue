@@ -1,1 +1,0 @@
-import{o,c as a,a as e,u as r,F as t,R as n}from"./index-DbwF4kcF.js";import{H as s,F as m,_}from"./GoTop-Buz73a5U.js";import{_ as c}from"./LoadingComponent-BGFioKFd.js";import"./statusStore-DIbjkyLJ.js";const k={__name:"FrontLayout",setup(p){return(u,f)=>(o(),a(t,null,[e(s),e(c),e(r(n)),e(m),e(_)],64))}};export{k as default};

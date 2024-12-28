@@ -1,1 +1,0 @@
-import{o as t,c as n,b as s,t as o}from"./index-DbwF4kcF.js";const r={class:"page-banner"},c=["src"],i={class:"page-title"},g={__name:"PageBanner",props:["imagesUrl","pageTitle"],setup(a){const e=a;return(l,p)=>(t(),n("div",r,[s("img",{src:e.imagesUrl,alt:"banner"},null,8,c),s("div",i,o(e.pageTitle),1)]))}};export{g as _};
