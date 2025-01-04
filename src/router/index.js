@@ -64,6 +64,11 @@ const routes = [
     component: () => import('../views/DashboardView.vue'),
     children: [
       {
+        path: '',
+        name: 'adminHome',
+        component: () => import('../views/backend/HomeView.vue'),
+      },
+      {
         path: '/reserveList',
         name: 'reserveList',
         component: () => import('../views/backend/reserve/Index.vue'),
