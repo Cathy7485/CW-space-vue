@@ -97,7 +97,6 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     spaceType,
     planList,
     activePlan,
-    // planTypePrice,
     sharedOfficePrices,
     privateOfficePrices,
     spacePlan,

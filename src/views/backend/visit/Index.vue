@@ -11,6 +11,7 @@ const { isLoading } = storeToRefs(status);
 
 const router = useRouter();
 const { VITE_DATA_URL } = import.meta.env;
+
 const visitData = ref([]);
 
 const getVisit = async () => {
@@ -18,6 +19,7 @@ const getVisit = async () => {
   const api = `${VITE_DATA_URL}/visit`;
   const res = await axios.get(api);
   visitData.value = res.data;
+  visitData.value.sort((a, b) => b.appointment - a.appointment);
   isLoading.value = false;
 };
 
@@ -39,7 +41,6 @@ onMounted(() => {
       <thead>
         <tr class="table-dark">
           <td>填寫時間</td>
-          <td>姓名</td>
           <td>公司名稱</td>
           <td>連絡電話</td>
           <td>email</td>

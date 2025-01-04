@@ -18,6 +18,7 @@ const getReserve = async () => {
   const api = `${VITE_DATA_URL}/reserves`;
   const res = await axios.get(api);
   reserveData.value = res.data;
+  reserveData.value.sort((a, b) => b.appointment - a.appointment);
   isLoading.value = false;
 };
 

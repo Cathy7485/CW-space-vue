@@ -18,6 +18,7 @@ const getComments = async () => {
   const api = `${VITE_DATA_URL}/comments`;
   const res = await axios.get(api);
   commentData.value = res.data;
+  commentData.value.sort((a, b) => b.appointment - a.appointment);
   isLoading.value = false;
 };
 
