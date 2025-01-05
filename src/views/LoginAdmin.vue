@@ -31,9 +31,9 @@ const signin = async () => {
 </script>
 
 <template>
-  <div class="block container" style="margin-top: 200px;">
-    <div class="h2 mb-3">登入</div>
-    <div class="form-signin w-50 m-auto">
+  <div class="login-bg">
+    <div class="login-block">
+      <h2>管理者登入</h2>
       <div class="form-floating mb-3">
         <input
           type="email"
@@ -56,7 +56,7 @@ const signin = async () => {
       </div>
       <button
         type="button"
-        class="btn btn-lg btn-primary w-100 mt-3"
+        class="btn btn-lg btn-primary"
         @click="signin"
       >
         登入
