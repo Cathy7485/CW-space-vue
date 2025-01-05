@@ -42,7 +42,7 @@ onMounted(() => {
           <td>公司名稱</td>
           <td>方案</td>
           <td>空間</td>
-          <td>空間分類</td>
+          <td>分類</td>
           <td>預約時間</td>
           <td></td>
         </tr>
@@ -56,7 +56,7 @@ onMounted(() => {
           <td data-label="公司名稱">{{ item.company }}</td>
           <td data-label="方案">{{ item.plan }}</td>
           <td data-label="空間">{{ item.space }}</td>
-          <td data-label="空間分類">{{ item.kind }}</td>
+          <td data-label="分類">{{ item.kind }}</td>
           <td data-label="預約時間">{{ item.time }}</td>
           <td class="text-center">
             <button

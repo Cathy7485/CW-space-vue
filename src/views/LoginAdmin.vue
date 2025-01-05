@@ -1,33 +1,12 @@
 <script setup>
-import axios from 'axios';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
+import { useAdminStore } from '@/stores/adminStore';
 
-const { VITE_DATA_URL } = import.meta.env;
+const store = useAdminStore();
 
-const router = useRouter();
+const { user } = storeToRefs(store);
+const { signin } = store;
 
-const user = ref({
-  email: '',
-  password: '',
-});
-
-const signin = async () => {
-  const api = `${VITE_DATA_URL}/login`;
-  try {
-    await axios
-      .post(api, user.value)
-      .then((res) => {
-        console.log(res);
-        const token = res.data.accessToken;
-        // set cookie expirations to 1 hour
-        document.cookie = `spaceToken=${token};max-age=3600;`;
-        router.push('/dashboard');
-      });
-  } catch (error) {
-    console.error('帳號或密碼錯誤');
-  }
-};
 </script>
 
 <template>

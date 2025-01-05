@@ -5,7 +5,6 @@ const router = useRouter();
 
 const logout = () => {
   document.cookie = 'spaceToken=;max-age=0;';
-  console.log('已登出');
   router.push('/login');
 };
 </script>
