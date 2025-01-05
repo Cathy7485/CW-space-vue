@@ -76,6 +76,7 @@
   }
 
   .space-img {
+    position: relative;
     height: 450px;
 
     @include tablet-landscape {

@@ -3,11 +3,13 @@
 import {
   ref, computed, onMounted,
 } from 'vue';
+import { UseImage } from '@vueuse/components';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
 import PageBanner from '@/components/PageBanner.vue';
 import bannerUrl from '@/assets/images/shared-banner.jpg';
 import btnImg from '@/assets/images/arrow-right.svg';
+import loadingGif from '@/assets/images/loading.gif';
 
 const defaultIdx = ref(0);
 const spaceTabTitle = ref([
@@ -81,7 +83,14 @@ onMounted(() => {
               class="space-img"
               v-for="(url, idx) in activeSpace.imgUrl"
               :key="url">
-              <img :src="url" :alt="`圖片${idx}`">
+              <UseImage :src="url" :alt="`圖片${idx}`">
+                <template #loading>
+                  <img class="loading-gif" :src="loadingGif">
+                </template>
+                <template #error>
+                  <span class="error-text">圖片錯誤</span>
+                </template>
+              </UseImage>
             </swiper-slide>
           </swiper-container>
           <div class="custom-next space-next-btn">
