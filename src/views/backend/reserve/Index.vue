@@ -32,11 +32,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    預約空間
-  </div>
+  <h4>預約空間-列表</h4>
   <div class="data-list">
-    <table class="table table-striped align-middle">
+    <table class="table table-striped align-middle table-rwd">
       <thead>
         <tr class="table-dark">
           <td>填寫時間</td>
@@ -51,15 +49,15 @@ onMounted(() => {
       </thead>
       <tbody>
         <tr v-for="item in reserveData" :key="item.id">
-          <td>
+          <td data-label="填寫時間">
             <span v-timeformat="item.appointment"></span>
           </td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.company }}</td>
-          <td>{{ item.plan }}</td>
-          <td>{{ item.space }}</td>
-          <td>{{ item.kind }}</td>
-          <td>{{ item.time }}</td>
+          <td data-label="姓名">{{ item.name }}</td>
+          <td data-label="公司名稱">{{ item.company }}</td>
+          <td data-label="方案">{{ item.plan }}</td>
+          <td data-label="空間">{{ item.space }}</td>
+          <td data-label="空間分類">{{ item.kind }}</td>
+          <td data-label="預約時間">{{ item.time }}</td>
           <td class="text-center">
             <button
               type="button"

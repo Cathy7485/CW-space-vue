@@ -32,11 +32,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <h4>
-    留言管理
-  </h4>
+  <h4>線上留言-列表</h4>
   <div class="data-list">
-    <table class="table table-striped align-middle">
+    <table class="table table-striped align-middle table-rwd">
       <thead>
         <tr class="table-dark">
           <td>姓名</td>
@@ -48,10 +46,10 @@ onMounted(() => {
       </thead>
       <tbody>
         <tr v-for="item in commentData" :key="item.id">
-          <td>{{ item.name }}</td>
-          <td>{{ item.company }}</td>
-          <td>{{ item.phone }}</td>
-          <td>{{ item.email }}</td>
+          <td data-label="姓名">{{ item.name }}</td>
+          <td data-label="公司名稱">{{ item.company }}</td>
+          <td data-label="連絡電話">{{ item.phone }}</td>
+          <td data-label="email">{{ item.email }}</td>
           <td class="text-center">
             <button
               type="button"

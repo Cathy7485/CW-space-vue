@@ -1,18 +1,26 @@
-.admin-logo {
+.admin-header {
   padding: 16px;
   background: #151515;
+
+  >.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.admin-logo {
   font-size: 1.5rem;
   font-weight: 600;
-  text-align: center;
 
   >a {
     color: #fff;
   }
 }
 
-.admin-header {
-  padding: 8px;
-  margin-bottom: 48px;
+.admin-nav {
+  padding: 16px;
+  margin-bottom: 32px;
   background: rgba(0, 0, 0, 0.4);
 
   a {
@@ -29,5 +37,54 @@
     padding: 8px 12px 6px;
     font-weight: 600;
     transition: all .3s;
+  }
+}
+
+.data-list {
+  tr {
+    >td:first-child {
+      padding-left: 16px;
+
+      @include desktop {
+        padding-left: 8px;
+      }
+    }
+  }
+
+  td {
+    >button {
+      width: 100%;
+    }
+  }
+}
+
+.table-rwd {
+  @include desktop {
+    >thead {
+      display: none;
+    }
+
+    >tbody {
+      td {
+        position: relative;
+        display: flex;
+
+        &::before {
+          content: attr(data-label);
+          display: block;
+          width: 80px;
+          float: left;
+          font-weight: bold;
+          color: #000;
+          margin-right: 16px;
+        }
+
+        &:last-child {
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
   }
 }

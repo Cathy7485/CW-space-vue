@@ -33,11 +33,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    預約參觀
-  </div>
+  <h4>預約參觀-列表</h4>
   <div class="data-list">
-    <table class="table table-striped align-middle">
+    <table class="table table-striped align-middle table-rwd">
       <thead>
         <tr class="table-dark">
           <td>填寫時間</td>
@@ -51,14 +49,14 @@ onMounted(() => {
       </thead>
       <tbody>
         <tr v-for="item in visitData" :key="item.id">
-          <td>
+          <td data-label="填寫時間">
             <span v-timeformat="item.appointment"></span>
           </td>
-          <td>{{ item.company }}</td>
-          <td>{{ item.phone }}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.space }}</td>
-          <td>{{ item.time }}</td>
+          <td data-label="公司名稱">{{ item.company }}</td>
+          <td data-label="連絡電話">{{ item.phone }}</td>
+          <td data-label="email">{{ item.email }}</td>
+          <td data-label="空間">{{ item.space }}</td>
+          <td data-label="參觀時段">{{ item.time }}</td>
           <td class="text-center">
             <button
               type="button"
