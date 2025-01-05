@@ -1,1 +1,0 @@
-import{o,c as a,a as e,u as r,F as t,R as n}from"./index-8s_xUr8i.js";import{H as s,F as m,_}from"./GoTop-CHGmXw8h.js";import{_ as c}from"./LoadingComponent-CqUdP2qq.js";import"./statusStore-C3eq9W_1.js";const H={__name:"FrontHome",setup(p){return(f,i)=>(o(),a(t,null,[e(s),e(c),e(r(n)),e(m),e(_)],64))}};export{H as default};

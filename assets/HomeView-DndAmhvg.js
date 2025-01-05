@@ -1,1 +1,0 @@
-import{s as a,o as r,c,d as s,b as e,t as n,u as _}from"./index-8s_xUr8i.js";import{u as p}from"./adminStore-Lf6vgHKc.js";import"./axios-B4uVmeYG.js";const i={class:"user-bg"},m={class:"fw-bold"},u=e("span",null,"ヽ(・×・´)ゞ",-1),B={__name:"HomeView",setup(l){const o=p(),{userName:t}=a(o);return(d,f)=>(r(),c("p",i,[s("您好，"),e("span",m,n(_(t)),1),s("！"),u]))}};export{B as default};
