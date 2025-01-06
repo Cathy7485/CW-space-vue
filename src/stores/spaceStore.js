@@ -21,6 +21,8 @@ export const useSpaceStore = defineStore('spaceStore', () => {
   const spaceType = computed(() => (activeSpace.value && activeSpace.value.space
     ? activeSpace.value.space.type : null));
 
+  const imagesList = computed(() => spaceList.value.map((item) => item.imgUrl[0]));
+
   const activePlan = computed(() => spaceList.value.filter((item) => {
     const planKey = planList.value[activeIdx.value];
     return item.type[0] && item.type[0].price && Object.keys(item.type[0].price).includes(planKey);
@@ -95,6 +97,7 @@ export const useSpaceStore = defineStore('spaceStore', () => {
     activeSpace,
     spaceDetail,
     spaceType,
+    imagesList,
     planList,
     activePlan,
     sharedOfficePrices,

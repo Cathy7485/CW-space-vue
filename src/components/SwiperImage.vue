@@ -1,14 +1,31 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpaceStore } from '@/stores/spaceStore';
 import 'swiper/css/bundle';
+import LightBox from './LightBox.vue';
 
 const store = useSpaceStore();
-const { spaceList } = storeToRefs(store);
+const { imagesList } = storeToRefs(store);
 const { getSpaceList } = store;
 
 const swiperEl = ref(null);
+
+const isOpen = ref(false);
+const currentImgIndex = ref(0);
+
+const currentUrl = computed(() => imagesList.value[currentImgIndex.value]);
+
+const handlerShowImg = (idx) => {
+  isOpen.value = true;
+  currentImgIndex.value = idx;
+};
+
+const handlerCloseLightBox = (e) => {
+  if (e.target.tagName === 'DIV') {
+    isOpen.value = false;
+  }
+};
 
 onMounted(() => {
   getSpaceList();
@@ -30,11 +47,23 @@ onMounted(() => {
       }"
     >
       <swiper-slide
-        v-for="item in spaceList"
-        :key="item.id"
+        v-for="(imgUrl, idx) in imagesList"
+        :key="imgUrl"
+        @click="handlerShowImg(idx)"
       >
-        <img :src="item.imgUrl[0]" :alt="item.name">
+        <img
+          :src="imgUrl"
+        >
       </swiper-slide>
     </swiper-container>
+    <teleport to='body'>
+      <LightBox
+        @onCloseLightBox="handlerCloseLightBox"
+        @onShowImg="handlerShowImg"
+        v-if="isOpen"
+        :currentUrl="currentUrl"
+        :imagesList="imagesList"
+      />
+    </teleport>
   </div>
 </template>
