@@ -60,7 +60,7 @@ onMounted(() => {
       <LightBox
         @onCloseLightBox="handlerCloseLightBox"
         @onShowImg="handlerShowImg"
-        v-if="isOpen"
+        :isOpen="isOpen"
         :currentUrl="currentUrl"
         :imagesList="imagesList"
       />

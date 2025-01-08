@@ -1,4 +1,4 @@
-.lightbox {
+.panel {
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
@@ -8,16 +8,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
-}
+  flex-direction: column;
+  padding: 20vw;
+  z-index: 5;
+  transition: 0.5s;
+  pointer-events: none;
+  opacity: 0;
 
-img {
-  width: calc(100% - 48px);
-  height: auto;
-  object-fit: cover;
+  @include wide {
+    padding: 10vw;
+  }
 
   @include desktop {
-    width: calc(100% - 24px);
+    padding: 8vw;
+  }
+
+  &.isOpen {
+    pointer-events: initial;
+    opacity: 1;
+  }
+}
+
+.lightbox {
+  position: relative;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
   }
 }
 
@@ -25,13 +43,7 @@ img {
   width: 100%;
   display: flex;
   justify-content: center;
-  position: fixed;
-  bottom: 0;
-  z-index: 1;
-
-  @include tablet-portrait {
-    bottom: 80px;
-  }
+  transition: 0.5s;
 
   img {
     display: block;
@@ -41,21 +53,12 @@ img {
   }
 
   &-btn {
-    width: calc(20% - 16px);
-    height: 80px;
+    flex: 1;
     cursor: pointer;
 
-    @include wide {
-      width: 10%;
-    }
-
-    @include tablet-portrait {
-      width: 80px;
+    &.active {
+      display: block;
+      border: 2px solid $primary;
     }
   }
-}
-
-.activeImg {
-  display: block;
-  border: 2px solid $primary;
 }
