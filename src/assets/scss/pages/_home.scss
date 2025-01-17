@@ -205,12 +205,11 @@
 
   .info {
     padding: 24px 24px 48px 24px;
-    position: relative;
     max-height: 248px;
     overflow-y: overlay;
 
     &::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
 
     &::-webkit-scrollbar-button {
@@ -298,7 +297,7 @@
     position: relative;
     display: inline-block;
     padding: 2px 14px;
-    background: #D0FB55;
+    background: $primary;
     color: #464646;
     font-weight: 700;
   }
