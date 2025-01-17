@@ -1,1 +1,0 @@
-import{s as n,r as s,o as a,i as r,u as c}from"./index-BwYU3x0I.js";import{u as p}from"./statusStore-BdiKAmTr.js";const f={__name:"LoadingComponent",setup(_){const o=p(),{isLoading:t}=n(o);return(i,m)=>{const e=s("loading-component",!0);return a(),r(e,{active:c(t),color:"#000"},null,8,["active"])}}};export{f as _};
