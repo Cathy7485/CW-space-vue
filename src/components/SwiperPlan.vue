@@ -19,8 +19,8 @@ onMounted(() => {
       class="service-swiper"
       :autoHeight="true"
       :navigation="{
-        prevEl: '.custom-prev',
-        nextEl: '.custom-next'
+        prevEl: '.home-service .custom-prev',
+        nextEl: '.home-service .custom-next'
       }"
       :slidesPerView="1"
       :space-between="32"
