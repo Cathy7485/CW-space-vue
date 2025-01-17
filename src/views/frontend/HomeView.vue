@@ -10,12 +10,30 @@ import HomeVisitBanner from '@/components/HomeVisitBanner.vue';
 
 <template>
   <HomeBanner />
-  <div class="content container">
-    <HomeAbout />
-    <HomeSpace />
+  <div class="bg-lines">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="content">
+    <div class="container">
+      <HomeAbout />
+    </div>
+    <div class="container">
+      <HomeSpace />
+    </div>
     <HomeService />
-    <LatestNews />
-    <HomeQuestion />
+    <div class="container">
+      <LatestNews />
+    </div>
+    <div class="container">
+      <HomeQuestion />
+    </div>
   </div>
   <HomeVisitBanner />
 </template>

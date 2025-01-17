@@ -14,7 +14,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="home-service block">
+  <div class="home-service">
     <swiper-container
       class="service-swiper"
       :autoHeight="true"
@@ -25,8 +25,8 @@ onMounted(() => {
       :slidesPerView="1"
       :space-between="32"
       :breakpoints="{
-        768: { slidesPerView: 1},
-        992: { slidesPerView: 2}
+        768: { slidesPerView: 2},
+        992: { slidesPerView: 3}
       }"
     >
       <swiper-slide

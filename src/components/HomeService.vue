@@ -8,6 +8,10 @@ const link = ref('service');
 </script>
 
 <template>
-  <HomeBlockTitle :title="title" :link="link" />
-  <ServicePlan />
+  <div class="container">
+    <HomeBlockTitle :title="title" :link="link" />
+  </div>
+  <div class="block-inner">
+    <ServicePlan />
+  </div>
 </template>
