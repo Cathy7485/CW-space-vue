@@ -24,3 +24,7 @@
   * `vee-validate` 表單驗證
   * `Vue-loading-overlay` 客製轉場效果
   * `vue-datepicker-next` 日期選擇器元件
+
+## 測試帳號
+帳號 `test@gmail.com`
+密碼 `Test123456`
