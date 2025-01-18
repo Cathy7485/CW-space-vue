@@ -20,7 +20,6 @@ export const useAdminStore = defineStore('adminStore', () => {
       await axios
         .post(api, user.value)
         .then((res) => {
-          // console.log(res);
           const token = res.data.accessToken;
           userName.value = res.data.user.username;
           // set cookie expirations to 1 hour
@@ -29,6 +28,7 @@ export const useAdminStore = defineStore('adminStore', () => {
         });
     } catch (error) {
       console.error('帳號或密碼錯誤');
+      alert('帳號或密碼錯誤');
     }
   };
 
